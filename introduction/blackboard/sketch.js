@@ -1,4 +1,4 @@
-
+//randomwalker
 
 function setup (){
     createCanvas(400,300)
@@ -29,9 +29,9 @@ class Chalk {
 
     step(){
         
-        let stepx = floor(random(3))-1
+        let stepx = floor(random(4))-1
 
-        let stepy = floor(random(3))-1 
+        let stepy = floor(random(4))-1 
 
         console.log(stepx,",",stepy)
 
