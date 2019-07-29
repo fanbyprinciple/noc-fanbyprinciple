@@ -15,6 +15,6 @@ function draw() {
     //console.log(floor(x/100))
     noStroke()
     fill(255,10)
-    ellipse(floor(x/100),100,16,16)
+    ellipse(floor(x/100),floor(x/100),floor(x/100),floor(x/100))
     
 }
