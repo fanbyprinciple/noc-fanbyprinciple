@@ -62,7 +62,7 @@ class Chalk {
 
         
         let r = random(1)
-        if(r <0.5){
+        if(r <0.4){
             if(mouse_x && mouse_y){
                 stepx = (mouse_x/Math.abs(mouse_x)) 
                 stepy = (mouse_y/Math.abs(mouse_y)) 
