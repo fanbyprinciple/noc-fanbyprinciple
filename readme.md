@@ -3,6 +3,9 @@ Nature of Code (noc) is abook by Daniel shiffman, where he investigates natural 
 
 This will include my attempts at additional modificaations in the code also so don't expect a code to code reference. Cheers!
 
+an example of weirdnes of p5.js:
+![](slither.io.gif)
+
 Notes:
 PENDING EXERCISES -
     1.4,1.5

@@ -62,12 +62,15 @@ class Chalk {
 
         
         let r = random(1)
-        if(r<0.01){
-            //levy lift
-            stepx = random(-100,100)
-            stepy = random(-100,100)
+        
+        // if(r<0.01){
+        //     //levy lift
+        //     stepx = random(-100,100)
+        //     stepy = random(-100,100)
     
-        } else if(r <0.4){
+        // } else 
+        
+        if(r <0.4){
             if(mouse_x && mouse_y){
                 stepx = (mouse_x/Math.abs(mouse_x)) 
                 stepy = (mouse_y/Math.abs(mouse_y)) 
