@@ -11,8 +11,7 @@ function montecarlo() {
 
 function setup() {
     createCanvas(640,400)
-    x = random(0,width)
-    ellipse(x,180,16,16)
+    
 
     t =3
 }
@@ -20,6 +19,12 @@ function setup() {
 function draw() {
     n = noise(t)
     //console.log(n)
+    m = noise(t+100)
+    
+    x = map(n,0,1,0,width)
+    y = map(m,0,1,0,height)
+    ellipse(x,y,16,16)
+
     t = t+0.01
 
 }
