@@ -8,4 +8,5 @@ an example of weirdnes of p5.js:
 
 Notes:
 PENDING EXERCISES -
-    1.4,1.5,ex-1.6,1.8,1.9,1.10
+    0.4,0.5,ex-0.6,0.8,0.9,0.10
+    1.3,
