@@ -31,6 +31,17 @@ class Ball {
     }
 
     checkEdges() {
+        if (this.loc.x < 0) {
+            this.loc.x = width
+        } else if (this.loc.x > width) {
+            this.loc.x = 0
+        }
+
+        if (this.loc.y < 0) {
+            this.loc.y = height
+        } else if (this.loc.y > height) {
+            this.loc.y = 0
+        }
 
     }
 
@@ -50,5 +61,6 @@ function setup() {
 }
 function draw() {
     ball.update()
+    ball.checkEdges()
     ball.display()
 }
