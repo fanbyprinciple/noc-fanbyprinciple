@@ -18,6 +18,7 @@ class Mover {
     update () {
 
         this.acc = p5.Vector.random2D ()
+        this.acc.mult(random(2))
 
         this.vel.add(this.acc)
         this.vel.limit(this.topspeed)
