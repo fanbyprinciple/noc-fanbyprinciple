@@ -1,10 +1,26 @@
+function limiting (vel,maximum) {
+    if (vel> maximum) {
+        vel = max
+    }
+}
+
 class Mover { 
     constructor () {
-        this.vel = createVector(random(-2,2),random(-2,2))
-        this.loc = createVector(random(width),random(height))
+        this.vel = createVector(0,0)
+    
+        this.loc = createVector(width/2,height/2)
+        this.acc = createVector(-0.001,0.01)
+
+        this.topspeed =10
+        
     }
 
     update () {
+
+        this.acc = p5.Vector.random2D ()
+
+        this.vel.add(this.acc)
+        this.vel.limit(this.topspeed)
         this.loc.add(this.vel)
     }
 
