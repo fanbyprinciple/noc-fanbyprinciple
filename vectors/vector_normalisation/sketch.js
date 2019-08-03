@@ -2,7 +2,7 @@ function setup () {
     createCanvas(600,600)
 }
 function draw () {
-    background(220)
+    background(255)
 
     mousee = createVector (mouseX,mouseY)
 
@@ -11,5 +11,5 @@ function draw () {
 
     //line(width/2,height/2,width,height/2 )
     
-    line (0,0,mousee.x,mousee.y)
+    line (width/2,height/2,mousee.x,mousee.y)
 }
