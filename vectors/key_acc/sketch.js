@@ -2,12 +2,11 @@ var acc_global_x = 0
 var acc_global_y = 0
 
 function keyPressed() {
-    if (keyCode === UP_ARROW) {
+    if (keyCode === DOWN_ARROW) {
         acc_global_y += 0.001
-        background(220)
-    } else if (keyCode === DOWN_ARROW) {
+    } else if (keyCode === UP_ARROW) {
         acc_global_y -= 0.001
-        background(120)
+        
     } else if (keyCode == RIGHT_ARROW) {
         acc_global_x += 0.001
     } else if (keyCode === LEFT_ARROW) {
@@ -25,8 +24,9 @@ class Ball {
     }
 
     display () {
+        background(0)
         stroke (0)
-        fill (175)
+        fill (255)
         ellipse(this.loc.x,this.loc.y,24,24)
     }
 
