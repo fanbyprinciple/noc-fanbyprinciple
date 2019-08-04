@@ -30,7 +30,7 @@ function setup () {
 
 function draw () {
     background(0)
-    stroke (255)
+    stroke (70)
     noFill()
 
     rotateX(PI/3)
@@ -58,6 +58,7 @@ function draw () {
 
     for (let y= 0; y < rows; y++) {
         beginShape(TRIANGLE_STRIP)
+        fill (175)
         for (let x = 0; x <cols; x++) {
             vertex(x*scl,y*scl, terrain[x][y])
             vertex(x*scl,(y+1)*scl, terrain[x][y+1])
