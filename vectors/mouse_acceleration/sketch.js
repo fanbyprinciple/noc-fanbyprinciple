@@ -1,12 +1,12 @@
-var mover
+var mover = []
 var mousee
 var dir
 
 class Mover {
-    constructor() {
-        this.loc = createVector(width/2,height/2)
+    constructor(i) {
+        this.loc = createVector(random(width),random(height))
         this.vel = createVector(0,0)
-        this.acc = createVector(-0.001,0.01)
+        this.acc = createVector(0,0)
         this.topspeed =10
     }
 
@@ -48,14 +48,21 @@ class Mover {
 
 function setup() {
     createCanvas(400,400)
-    mover = new Mover()
+    for(let i = 0; i < 20; ++i){
+        mover[i] = new Mover()
+
+    }
+    
 }
 
 function draw() {
     background(255)
-    mover.display()
-    mover.update()
-    mover.checkEdges()
+    for(let i=0; i <20; i++){
+        mover[i].display()
+        mover[i].update()
+        mover[i].checkEdges()
+    }
+    
 
     
 
