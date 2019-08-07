@@ -16,7 +16,7 @@ class Mover {
         dir = p5.Vector.sub(mousee, this.loc) 
         dir.normalize()
         dir.mult(0.5)
-        this.acc = dir
+        this.acc = dir 
 
         console.log(dir)
         this.vel.add(this.acc)
