@@ -1,11 +1,12 @@
-var value =0
+var value= 0
 
 class Mover {
 
-    constructor() {
+    constructor(mass) {
         this.loc = createVector(width/2,height/2)
         this.vel = createVector(0,0)
         this.acc = createVector(0,0)
+        this.mass = mass
     }
 
     applyForce( force ) {
@@ -21,15 +22,14 @@ class Mover {
     display() {
         stroke (255)
         fill (0)
-        ellipse(this.loc.x,this.loc.y, 16, 16)
+        ellipse(this.loc.x,this.loc.y, this.mass, this.mass)
     }
 
     checkEdges() {
         if (this.loc.y < 0){
             let backForce = createVector(0,0.3)
             this.applyForce(backForce)
-
-        }
+        } 
     }
 
 }
@@ -48,7 +48,7 @@ function mousePressed() {
 
 function setup() {
     createCanvas(400,400)
-    mover = new Mover()
+    mover = new Mover(16)
 }
 
 function draw() {
