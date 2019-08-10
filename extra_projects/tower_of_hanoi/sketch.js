@@ -18,8 +18,13 @@ function tower(n,s,a,d) {
 }
 
 function setup() {
+    createCanvas(200,200)
+    background(0)
     tower(3,"s","a","d")
 
 }
 
-function draw() {}
+function draw() {
+
+
+}
