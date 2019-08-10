@@ -6,6 +6,7 @@ This will include my attempts at additional modificaations in the code also so d
 an example of weirdnes of p5.js:
 ![](slither.io.gif)
 
+
 Notes:
 PENDING EXERCISES -
     0.4,0.5,ex-0.6,0.8,0.9,0.10
