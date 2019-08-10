@@ -8,7 +8,7 @@ class Mover {
     }
 
     applyForce(force) {
-        f = p5.Vector.div(force,this.mass)
+        let f = p5.Vector.div(force,this.mass)
         this.acc.add(f)
     }
 
@@ -22,7 +22,7 @@ class Mover {
     display() {
         stroke(0)
         fill(175)
-        ellipse(loc.x,loc.y,mass*16,mass*16)
+        ellipse(this.loc.x,this.loc.y,this.mass*16,this.mass*16)
     }
 
     checkEdges() {
@@ -42,9 +42,10 @@ class Mover {
 
 }
 
+var mover = []
+
 function setup() {
     createCanvas(400,400)
-    let mover = [100]
     for(let i =0; i <100; ++i){
         mover[i] = new Mover(random(0.1,5),0,0)
     }
@@ -52,5 +53,15 @@ function setup() {
 
 }
 function draw() {
-    
+
+    let wind = createVector(0.01,0)
+    let gravity = createVector(0,0.1)
+    for(let i = 0 ; i< 100 ; ++i){
+        mover[i].update()
+        mover[i].display()
+        mover[i].applyForce(gravity)
+        mover[i].applyForce(wind)
+        mover[i].checkEdges()
+
+    }
 }
