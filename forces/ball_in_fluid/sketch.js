@@ -41,7 +41,8 @@ class Mover {
     display() {
         stroke(0)
         fill (175)
-        ellipse ( this.loc.x, this.loc.y, this.mass*16, this.mass*16)
+        rect(this.loc.x,this.loc.y,this.mass*16,this.mass*16)
+        //ellipse ( this.loc.x, this.loc.y, this.mass*16, this.mass*16)
 
     }
 
@@ -76,7 +77,7 @@ class Mover {
     drag(liquid) {
         console.log("drag")
         let speed = this.vel.mag()
-        let dragMagnitude = liquid.c * speed * speed
+        let dragMagnitude = liquid.c * speed * speed * (1/this.mass)
 
         let drag = this.vel.copy()
         drag.mult(-1)
@@ -93,7 +94,7 @@ function setup() {
     liquid2 = new Liquid(0,height/1.55, width, height/2,0.02,110)
 
     for(let i = 0 ; i <10 ; ++i){
-        mover[i] = new Mover(random(0.1,5), 0,random (0,height/2))
+        mover[i] = new Mover(random(0.1,5), 0 + i*10,random (0,height/2))
     }
     
 }
