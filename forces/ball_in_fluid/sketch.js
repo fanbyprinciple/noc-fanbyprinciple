@@ -90,10 +90,10 @@ class Mover {
 function setup() {
     createCanvas(400,400)
     liquid = new Liquid(0,height/2,width,height/8,0.01,130)
-    liquid2 = new Liquid(0,height/1.55, width, height/8,0.02,175)
+    liquid2 = new Liquid(0,height/1.55, width, height/2,0.02,110)
 
     for(let i = 0 ; i <10 ; ++i){
-        mover[i] = new Mover(random(0.1,5), 0,0)
+        mover[i] = new Mover(random(0.1,5), 0,random (0,height/2))
     }
     
 }
@@ -107,7 +107,7 @@ function draw() {
     liquid.display()
     liquid2.display()
 
-    for (let i =0; i < 1; ++i){
+    for (let i =0; i < 10; ++i){
         mover[i].update()
         mover[i].display()
 
