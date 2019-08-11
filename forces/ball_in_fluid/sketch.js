@@ -2,17 +2,19 @@ var mover = []
 var liquid
 
 class Liquid {
-    constructor(x_,y_,h_,c_) {
+    constructor(x_,y_,w_,h_,c_,color) {
         this.x = x_
         this.y = y_
         this.h = h_
+        this.w = w_
         this.c = c_
+        this.color = color
     }
 
     display() {
         noStroke()
-        fill (130)
-        rect (this.x,this.y,this.h,this.c)
+        fill (this.color)
+        rect (this.x,this.y,this.w,this.h)
     }
 
 }
@@ -37,7 +39,7 @@ class Mover {
     }
 
     display() {
-        noStroke()
+        stroke(0)
         fill (175)
         ellipse ( this.loc.x, this.loc.y, this.mass*16, this.mass*16)
 
@@ -61,11 +63,34 @@ class Mover {
         }
     }
 
+    isInside(liquid) {
+        //return false
+        if (this.loc.x > liquid.x && this.loc.x < liquid.x+ liquid.w && this.loc.y > liquid.y && this.loc.y < liquid.y + liquid.h ){
+
+            return true
+        } else {
+            return false
+        } 
+    }
+
+    drag(liquid) {
+        console.log("drag")
+        let speed = this.vel.mag()
+        let dragMagnitude = liquid.c * speed * speed
+
+        let drag = this.vel.copy()
+        drag.mult(-1)
+        drag.normalize()
+        drag.mult(dragMagnitude)
+        this.applyForce(drag)
+    }
+
 }
 
 function setup() {
     createCanvas(400,400)
-    liquid = new Liquid(0,height/2,width,height/2,0.01)
+    liquid = new Liquid(0,height/2,width,height/8,0.01,130)
+    liquid2 = new Liquid(0,height/1.55, width, height/8,0.02,175)
 
     for(let i = 0 ; i <10 ; ++i){
         mover[i] = new Mover(random(0.1,5), 0,0)
@@ -77,13 +102,26 @@ function draw() {
     background(51)
 
     let wind = createVector(0.01,0)
-    let gravity = createVector(0,0.1)
+    //let gravity = createVector(0,0.1)
 
     liquid.display()
+    liquid2.display()
 
-    for (let i =0; i < 10; ++i){
+    for (let i =0; i < 1; ++i){
         mover[i].update()
         mover[i].display()
+
+        if(mover[i].isInside(liquid)) {
+            mover[i].drag(liquid)
+        }
+
+        if(mover[i].isInside(liquid2)) {
+            mover[i].drag(liquid2)
+        }
+
+        let m = 0.1 * mover[i].mass
+
+        let gravity = createVector(0,m)
 
         mover[i].applyForce(gravity)
         mover[i].applyForce(wind)
