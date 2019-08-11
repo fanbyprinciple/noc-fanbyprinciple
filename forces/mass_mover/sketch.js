@@ -1,3 +1,5 @@
+
+
 class Mover {
     constructor(mass,x,y) {
         this.mass = mass
@@ -77,11 +79,14 @@ class Mover {
 }
 
 var mover = []
+var mass = []
 
 function setup() {
     createCanvas(400,400)
     for(let i =0; i <1; ++i){
-        mover[i] = new Mover(random(0.1,5),10,10)
+        mass[i] = random(0.1,5)
+        mover[i] = new Mover(mass[i],10,10)
+        
     }
 
 
@@ -91,13 +96,23 @@ function draw() {
 
     let wind = createVector(0.01,0)
     let gravity = createVector(0,0.1)
+    
     for(let i = 0 ; i< 1 ; ++i){
-        mover[i].pushEdges()
+        //let gravity = createVector(0,0.1 * mass[i])
+        //mover[i].pushEdges()
+
+        let cof = 0.01
+        let friction = mover[i].vel
+        friction.mult(-1)
+        friction.normalize();
+        friction.mult(cof);
+
         mover[i].update()
         mover[i].display()
+        mover[i].applyForce(friction)
         mover[i].applyForce(gravity)
         mover[i].applyForce(wind)
-        //mover[i].checkEdges()
+        mover[i].checkEdges()
         
 
     }
