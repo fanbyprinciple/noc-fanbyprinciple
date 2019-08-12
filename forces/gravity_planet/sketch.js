@@ -9,6 +9,19 @@ class Planet {
         fill (175,200)
         ellipse(this.loc.x,this.loc.y,this.mass*2,this.mass*2)
     }
+
+    attract (m) {
+        let f = p5.Vector.sub(this.loc,m.loc)
+        let distance = f.mag()
+        distance = constrain(distance, 5.0, 25.0)
+        f.normalize()
+
+        let G = 1
+        let strength = (G * this.mass * m.mass)/ (distance * distance)
+        f.mult(strength)
+        return f
+
+    }
 }
 
 class Comet {
@@ -61,11 +74,19 @@ function setup () {
     comet = new Comet(10,0,0)
     planet = new Planet(20,width/2,height/2)
 }
+
 function draw() {
     background(0)
 
-    planet.display()
-    
+    let force = planet.attract(comet)
+    let wind = createVector(0.01,0)
+    let gravity = createVector(0,-0.1)
+    comet.applyForce(force)
+    comet.applyForce(wind)
+    comet.applyForce(gravity)
+
     comet.update()
+
+    planet.display()
     comet.display()
 }
