@@ -96,8 +96,8 @@ function setup () {
 function draw() {
     background(0)
     
-    let wind = createVector(0.01,0)
-    let gravity = createVector(0,-0.1)
+    //let wind = createVector(0.01,0)
+    //let gravity = createVector(0,-0.1)
 
     
     for(let i =0 ; i < 10; ++i) {
@@ -112,8 +112,8 @@ function draw() {
         }
         
         
-        comets[i].applyForce(wind)
-        comets[i].applyForce(gravity)
+        //comets[i].applyForce(wind)
+        //comets[i].applyForce(gravity)
 
         comets[i].update()
         comets[i].checkEdges()
