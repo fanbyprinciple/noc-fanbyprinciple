@@ -54,7 +54,7 @@ class Comet {
          
     }
 
-    checKEdges() {
+    checkEdges() {
         if(this.loc.x > width) {
             this.loc.x = 0
         } else if (this.loc.x < 0) {
@@ -85,7 +85,7 @@ var comets = []
 var planet 
 
 function setup () {
-    createCanvas(200,200)
+    createCanvas(400,400)
     for(let i =0; i < 10; i++){
         comets[i] = new Comet(random(10),random(0,width),random(0,height))
     }    
@@ -116,6 +116,7 @@ function draw() {
         comets[i].applyForce(gravity)
 
         comets[i].update()
+        comets[i].checkEdges()
         comets[i].display()
     }    
         
