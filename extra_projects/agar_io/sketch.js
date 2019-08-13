@@ -1,12 +1,36 @@
+var yoff = 0
+
 function Blob(r,x,y,color) {
     this.pos = createVector(x,y)
     this.radius = r
     this.color = color
     this.vel = createVector(0,0)
     this.show = function() {
-        fill (this.color)
+        fill (color,0,0)
         //console.log(this.pos.x,this.radius)
         ellipse(this.pos.x,this.pos.y,this.radius*2, this.radius*2)
+    }
+
+    this.wobble =function() {
+        push ()
+        translate(this.pos.x, this.pos.y)
+        beginShape()
+        let xoff = 0
+        for(let i=0; i < TWO_PI; i+= 0.1){
+            //let offset = map(sin(i * 10 + frameCount * 0.1), -1,1,-5,5) //sin wave
+            //let offset = map(noise(xoff + yoff),0,1,-25,25)// spinning blob
+            //let offset = map(noise(xoff,yoff),0,1,-25,25)
+            //let r = this.radius + offset
+            let r = this.radius + random(-4,3)
+            let x = r * cos (i)
+            let y = r * sin (i)
+            vertex(x,y)
+            xoff +=0.1
+        }
+        endShape()
+
+        pop ()
+        yoff += 0.1
     }
 
     this.update = function(){
@@ -41,11 +65,11 @@ var zoom = 1
 
 function setup() {
     createCanvas(600,600)
-    myBlob = new Blob(64,0,0,255)
+    myBlob = new Blob(16,0,0,130)
     for (let i=0; i < no_of_blobs; ++i){
         let x = random(-width,width)
         let y = random(-height, height)
-        blobs[i] = new Blob(16,x,y,250)
+        blobs[i] = new Blob(16,x,y,130)
     }
     
     
@@ -75,7 +99,7 @@ function draw() {
         
     }
 
-    myBlob.show()
+    myBlob.wobble()
     myBlob.update()
     
 }
