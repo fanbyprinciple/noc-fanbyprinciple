@@ -41,7 +41,7 @@ var zoom = 1
 
 function setup() {
     createCanvas(600,600)
-    myBlob = new Blob(64,width/2,height/2,255)
+    myBlob = new Blob(64,0,0,255)
     for (let i=0; i < no_of_blobs; ++i){
         let x = random(-width,width)
         let y = random(-height, height)
@@ -53,9 +53,13 @@ function setup() {
 
 function draw() {
     background(0)
-    translate(width/2,height/2-myBlob.pos.y)
-    myBlob.show()
-    myBlob.update()
+    //translate(width/2-myBlob.pos.x,height/2-myBlob.pos.y)
+    translate(width/2,height/2)
+    let newzoom= (64/myBlob.radius)
+    zoom = lerp(zoom,newzoom,0.1)
+    scale (zoom)
+    translate(-myBlob.pos.x,-myBlob.pos.y)
+    
     for (let i = no_of_blobs - 1; i >= 0; --i){
 
         if(blobs[i]){
@@ -70,5 +74,8 @@ function draw() {
         } 
         
     }
+
+    myBlob.show()
+    myBlob.update()
     
 }
