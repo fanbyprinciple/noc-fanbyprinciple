@@ -15,5 +15,5 @@ var io = socket(server)
 io.sockets.on('connection', newConnection)
 
 function newConnection (socket) {
-    console.log("Connection made")
+    console.log("Connection made with " + socket.id)
 }
