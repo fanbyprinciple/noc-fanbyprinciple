@@ -9,8 +9,10 @@ class Planet {
 
     display() {
         stroke (0)
-        fill (175,200)
+        fill (51)
         ellipse(this.loc.x,this.loc.y,this.mass*2,this.mass*2)
+        fill(65)
+        ellipse(this.loc.x,this.loc.y, (this.mass-5)*2, (this.mass-5)*2)
     }
 
     attract (m) {
@@ -20,7 +22,7 @@ class Planet {
         f.normalize()
 
         
-        let strength = (G * this.mass * m.mass)/ (distance * distance)
+        let strength = (G *2 * this.mass * m.mass)/ (distance * distance)
         f.mult(strength)
         return f
 
@@ -33,6 +35,7 @@ class Comet {
         this.loc = createVector(x,y)
         this.vel = createVector(0,0)
         this.acc = createVector(0,0)
+        this.visible = true
     }
 
     display() {
@@ -79,6 +82,12 @@ class Comet {
         f.mult(strength)
         return f
     }
+
+    insideBlackhole() {
+        this.visible = false
+    }
+
+    
 }
 
 var comets = []
@@ -107,9 +116,13 @@ function draw() {
 
         
         for (let j=0 ; j <10; j++){
-            let f_comet = comets[i].attract(comets[j])
-            comets[i].applyForce(f_comet)
+            if(i!=j){
+                let f_comet = comets[i].attract(comets[j])
+                comets[i].applyForce(f_comet)
+            }
+            
         }
+        
         
         
         //comets[i].applyForce(wind)
@@ -117,7 +130,10 @@ function draw() {
 
         comets[i].update()
         comets[i].checkEdges()
-        comets[i].display()
+        if(comet[i].visible){
+            comets[i].display()
+        }
+        
     }    
         
     
