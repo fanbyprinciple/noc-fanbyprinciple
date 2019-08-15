@@ -123,7 +123,7 @@ function draw() {
             
         }
         
-        
+        if (comet)
         
         //comets[i].applyForce(wind)
         //comets[i].applyForce(gravity)
