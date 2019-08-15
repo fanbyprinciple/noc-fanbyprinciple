@@ -58,20 +58,26 @@ function Blob(r,x,y,color) {
             return false
         }
     }
+
+    this.constrain = function(){
+        this.pos.x = constrain(this.pos.x,-width,width)
+        this.pos.y = constrain(this.pos.y,-width,height)
+    }
 }
 
 var blobs = []
-//var c_blobs = [] // all the blobs currently connected
-var no_of_blobs = 0
+var c_blobs = [] // all the blobs currently connected
+var no_of_blobs = 100
 var myBlob
 var zoom = 1
+var socket_id
 
 function setup() {
     createCanvas(600,600)
     myBlob = new Blob(16,0,0,130)
     for (let i=0; i < no_of_blobs; ++i){
-        let x = random(-width,width*2)
-        let y = random(-height, height*2)
+        let x = random(-width,width)
+        let y = random(-height, height)
         blobs[i] = new Blob(16,x,y,130)
     }
     
@@ -84,6 +90,18 @@ function setup() {
     }
 
     socket.emit('start',data)
+
+    socket.on('id', function(data){
+            socket_id = data
+            console.log(socket_id)
+        }
+    )
+    socket.on('heartbeat', function(data){
+            c_blobs = data
+           // console.log(c_blobs)
+            
+        }
+    )
     
 }
 
@@ -114,6 +132,45 @@ function draw() {
     fill(255,0,0)
 
     myBlob.wobble()
-    myBlob.update()
+    if(mouseIsPressed){
+        myBlob.update()
+    }
+
     
+    myBlob.constrain()
+
+    for(let i =0; i < c_blobs.length; i++){
+        if(c_blobs[i].id != socket_id) {
+            fill(0,0,255)
+            //ellipse(c_blobs[i].x,c_blobs[i].y,c_blobs[i].radius*2,c_blobs[i].radius*2)
+            push()
+            translate(c_blobs[i].x,c_blobs[i].y)
+            beginShape()
+            let xoff = 0
+            for(let j=0; j<TWO_PI; j+=0.1){
+                let r = c_blobs[i].radius + random(-4,3)
+                let x = r * cos(j)
+                let y = r * sin(j)
+                vertex(x,y)
+                xoff += 0.1
+            }
+            endShape()
+            pop()
+            //c_yoff += 0.1
+            fill(255)
+            textAlign(CENTER)
+            textSize(3)
+            text(c_blobs[i].id,c_blobs[i].x,c_blobs[i].y + c_blobs[i].radius)
+
+        }
+       
+    }
+
+
+    var data = {
+        x: myBlob.pos.x,
+        y: myBlob.pos.y,
+        radius: myBlob.radius
+    }
+    socket.emit('update', data)
 }
