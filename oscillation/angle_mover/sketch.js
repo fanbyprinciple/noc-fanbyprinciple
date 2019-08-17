@@ -20,6 +20,13 @@
 
         this.aVelocity += this.aAcceleration
         this.angle += this.aVelocity
+
+        this.acc =0
+        this.aAcceleration =0
+     }
+
+     cannonshot() {
+        this.acc.add(10)
      }
 
      display() {
@@ -41,9 +48,11 @@
      
      createCanvas(300,300)
      mover = new Mover(4)
+     
  }
  function draw() {
     background(51)
+    //mover.cannonshot()
      mover.display()
      mover.update()
  }
