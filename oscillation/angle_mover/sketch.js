@@ -8,7 +8,7 @@
         
         this.angle = 0
         this.aVelocity = 0
-        this.aAcceleration = 0.00
+        this.aAcceleration = 0.01
 
      }
 
@@ -27,10 +27,11 @@
         fill(175,200)
         rectMode(CENTER)
         push()
-        console.log(this.loc.x,this.loc.y)
+        //console.log(this.loc.x,this.loc.y)
         translate(width/2,height/2)
         rotate(this.angle)
-        rect(this.loc.x,this.loc.y, this.mass * 16, this.mass * 16)
+        //console.log(this.loc.x + this.mass*8)
+        rect(this.loc.x-width/2,this.loc.y-height/2, this.mass * 16, this.mass * 16)
         pop()
      }
  }
@@ -38,7 +39,7 @@
  let mover
  function setup(){
      
-     createCanvas(600,600)
+     createCanvas(300,300)
      mover = new Mover(4)
  }
  function draw() {
