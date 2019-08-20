@@ -97,7 +97,11 @@ function setup() {
         }
     )
     socket.on('heartbeat', function(data){
-            c_blobs = data
+            //c_blobs = data
+
+            for(let i = 0 ; i < data.length; ++i){
+                c_blobs[i] = new Blob(data[i].x,data[i].y,data[i].radius)
+            }
            // console.log(c_blobs)
             
         }
