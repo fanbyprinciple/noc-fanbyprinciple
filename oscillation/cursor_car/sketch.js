@@ -7,7 +7,8 @@ class Car {
     } 
 
     display(){
-        let angle = atan(this.vel.y/this.vel.x) + PI/2
+        //let angle = atan(this.vel.y/this.vel.x) + PI/2
+        let angle = this.vel.heading()+ PI/2
         push ()
         translate(this.loc.x,this.loc.y)
         rotate (angle)
@@ -21,6 +22,21 @@ class Car {
         this.vel.add(this.acc)
         this.loc.add(this.vel)
         this.acc.mult(0)
+    }
+
+    checkEdges() {
+        if(this.loc.x < 0) {
+            this.loc.x = width
+        }
+        if(this.loc.x >width){
+            this.loc.x = 0
+        }
+        if(this.loc.y < 0) {
+            this.loc.y = height
+        }
+        if(this.loc.y > height){
+            this.loc.y = 0
+        }
     }
 
     
@@ -60,5 +76,7 @@ function setup(){
 function draw() {
     background(0)
     car.update()
+    car.checkEdges()
     car.display()
+    
 }
