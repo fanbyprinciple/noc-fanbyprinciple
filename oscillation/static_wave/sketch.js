@@ -15,8 +15,8 @@ function setup() {
 
     beginShape ()
     for (let x =0; x <=width ;x+=5) {
-        let y = map(sin(angle),-1,-1,0,height)
-
+        let y = map(sin(angle),-1,1,0,height)
+        console.log(x,y)
         vertex (x,y)
         angle += angleVel
     } 
@@ -26,7 +26,14 @@ function setup() {
 
 
 function draw() {
-
+    angle = 0
+    for (let x =0; x<=width ;x+= 5) {
+        let y = map(sin(angle),-1,1,0,height)
+        stroke(0,50,150)
+        noFill ()
+        ellipse (x,y,48,48)
+        angle += angleVel
+    }
 
 }
 
