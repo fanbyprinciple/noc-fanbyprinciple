@@ -1,3 +1,6 @@
 ### When using sine function
 
-![](wave.gif)
+![](wave.gif) 
+
+### when using perlin noise
+![](perlin.gif)
