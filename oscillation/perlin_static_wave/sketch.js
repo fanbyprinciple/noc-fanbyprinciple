@@ -7,7 +7,10 @@ class Wave {
 
     display() {
         for (let x=0; x<=innerWidth;x+=24) {
-            let y = map(sin(this.ang),-1,1,0,height)
+            let m = noise(this.ang)
+    
+            let y = map(m,0,1,0,width)
+            //let y = map(sin(this.ang),-1,1,0,height)
             stroke (0)
             fill (0,50,50)
             ellipse(x,y,48,48)
