@@ -1,5 +1,5 @@
 class Pendulum {
-    constructor(origin,r,ang) {
+    constructor(origin,r,ang, shiftOrigin) {
         this.r  = r
         this.ang = PI/4
         this.angVel = 0
@@ -10,6 +10,8 @@ class Pendulum {
         this.angAcc = 0
         this.ballr = 48
         this.angVel = 0
+
+        this.isShift= shiftOrigin
 
     }
 
@@ -25,16 +27,11 @@ class Pendulum {
         this.angVel *= this.damping
         this.ang += this.angVel
         console.log(this.ang)
-
-        
-
-    
-
-        
-        
+          
     }
 
     display() {
+        this.shiftOrigin()
         this.loc.set(this.r*sin(this.ang),this.r*cos(this.ang),PI/4)
         this.loc.add(this.origin)
         stroke(0)
@@ -51,20 +48,30 @@ class Pendulum {
         this.update()
         this.display()
     }
+
+    shiftOrigin() {
+        if(this.isShift) {
+            this.origin = p.origin.copy()
+        }
+
+    }
 }
 
 
 
 var p
+var p1
 
 function setup() {
     createCanvas(200,200)
-    p = new Pendulum(createVector((width/2,height/2)),125,0)
+    p = new Pendulum(createVector((width/2,height/2)),125,0,0)
+    p1 = new Pendulum(createVector(p.loc.x, p.loc.y), 100,0,1)
          
 }
 
 function draw() {
     background(255)
     p.go()
+    p1.go()
 }
 
