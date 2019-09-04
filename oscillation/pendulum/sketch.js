@@ -22,7 +22,7 @@ class Pendulum {
         this.angAcc = sin(this.ang)* gravity/4 *-1
         console.log(this.angAcc)
 
-        this.angVel += this.angAcc
+        this.angVel += this.angAcc 
         
         this.angVel *= this.damping
         this.ang += this.angVel
