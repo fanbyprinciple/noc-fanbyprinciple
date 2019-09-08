@@ -8,18 +8,23 @@ class Spring {
         this.restLength = l
         this.loc =createVector(this.anchor.x,this.restLength)
         
-        this.k = 0.1
+        this.k = 0.01
          
         
     }
 
     connect(bob) {
+    
             let force = p5.Vector.sub(bob.loc,this.anchor)
+            //print(force.mag())
             this.loc = bob.loc
-            //this.currentlength = force.mag()
+            this.currentlength = force.mag()
+            print("length: ",this.currentLength)
             let x = this.restLength - this.currentlength
             force.normalize()
-            force.mult(-1 * this.k * x)
+            print(x)
+            force.mult(1 * this.k * x)
+            bob.applyForce(force)
     }
     
     display() {
@@ -32,7 +37,7 @@ class Spring {
 class Bob {
     constructor(x,y,size) {
         this.loc = createVector(x,y)
-        this.size = 25
+        this.size = size
         this.vel = createVector(0,0)
         this.acc = createVector(0,0)
     }
@@ -61,7 +66,7 @@ function setup () {
 
 function draw() {
     background(120)
-    let gravity = createVector(0,0.1)
+    let gravity = createVector(0,0.001)
     bob.applyForce(gravity)
     
     spring.connect(bob)
