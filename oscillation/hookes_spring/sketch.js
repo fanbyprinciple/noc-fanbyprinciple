@@ -19,11 +19,11 @@ class Spring {
             //print(force.mag())
             this.loc = bob.loc
             this.currentlength = force.mag()
-            print("length: ",this.currentLength)
+            //print("length: ",this.currentLength)
             let x = this.restLength - this.currentlength
             force.normalize()
-            print(x)
-            force.mult(1 * this.k * x)
+            //print(x)
+            force.mult(1 * this.k  * x)
             bob.applyForce(force)
     }
     
@@ -58,6 +58,14 @@ class Bob {
 let bob
 let spring
 
+function bobMagnet(bob){
+    if(mouseX < bob.loc.x +25/2 && mouseX > bob.loc.x -25/2 && mouseY < bob.loc.x +25/2 && mouseY > bob.loc.y -25/2){
+        console.log("inside")
+        bob.loc.x = mouseX
+        bob.loc.y = mouseY
+    }
+}
+
 function setup () {
     createCanvas(400,400 )
     bob = new Bob(width/2,height/2,25)
@@ -71,6 +79,7 @@ function draw() {
     
     spring.connect(bob)
     
+    bobMagnet(bob)
     spring.display()
     bob.display()
     
