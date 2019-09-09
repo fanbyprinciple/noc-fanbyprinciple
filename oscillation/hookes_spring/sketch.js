@@ -10,6 +10,8 @@ class Spring {
         
         this.k = 0.01
          
+        this.minconstrainLength = 30
+        this.maxconstrainLength = 180
         
     }
 
@@ -23,9 +25,18 @@ class Spring {
             let x = this.restLength - this.currentlength
             force.normalize()
             //print(x)
+            if(x*-1 > this.maxcontrainLength){
+                x = 180
+
+        
+            } else if(x*-1 < this.minconstrainLength){
+                x = 30
+    
+            }
             force.mult(1 * this.k  * x)
             bob.applyForce(force)
     }
+
     
     display() {
         line (this.anchor.x, this.anchor.y, this.loc.x, this.loc.y)
