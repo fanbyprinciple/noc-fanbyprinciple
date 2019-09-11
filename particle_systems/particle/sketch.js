@@ -1,16 +1,24 @@
-let p
+let p = []
+
+let total =10
 
 function setup() {
     createCanvas(200,200)
-    p = new Particle(createVector(width/2,10))
+    for (i=0; i<total;++i){
+        p[i] = new Particle(createVector(random(width),random(height)))
+    }
+    
     smooth ()
 }
 
 function draw() {
     background(255)
-    p.run()
-    if (p.isDead()){
-        console.log("Particle no more")
+    for (i=0; i<total;++i){
+        p[i].run()
+        if (p[i].isDead()){
+            console.log("Particle no more")
     }
+    }
+    
 }
 
