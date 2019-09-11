@@ -5,7 +5,7 @@ class Particle {
         this.acc = createVector(0,0)
         this.vel = createVector(0,0)
         this.lifespan = 255
-        this.rotate = true
+        this.rotate = false
         this.angle = 0
         this.angVel = 0.1
     }
@@ -30,7 +30,7 @@ class Particle {
             pop ()
         } else {
             stroke (0)
-            fill (175)
+            fill (this.lifespan)
             ellipse (this.loc.x,this.loc.y,8,0)
             ellipse (this.loc.x+7,this.loc.y,8,8)
         }
