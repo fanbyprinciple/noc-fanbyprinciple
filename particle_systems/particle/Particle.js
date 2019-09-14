@@ -1,7 +1,7 @@
 class Particle {
 
-    constructor(l) {
-        this.loc = l
+    constructor(locationVector) {
+        this.loc = locationVector
         this.acc = createVector(0,0)
         this.vel = createVector(0,0)
         this.lifespan = 255
@@ -11,10 +11,11 @@ class Particle {
     }
 
     update() {
+        //console.log(typeof(this.loc))
         this.vel.add(this.acc)
         this.loc.add(this.vel)
         this.lifespan -=2
-        //this.acc =0
+        this.acc.mult(0)
     }
 
     display() {
@@ -50,6 +51,7 @@ class Particle {
     }
 
     applyForce(f){
+        //console.log("acc:",typeof(this.acc))
         this.acc.add(f)
     }
 
