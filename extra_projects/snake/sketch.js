@@ -1,6 +1,4 @@
 
-var foodx
-var foody 
 
 class snake {
     constructor(){
@@ -9,15 +7,30 @@ class snake {
     }
 
     display(){
-        fill(255)
+
         for( let i =0; i < this.len;++ i){
-            ellipse(this.pos.x- i*11, this.pos.y, 12,12)
+            if(i ==0){ 
+                fill(240,230,120)
+            } else {
+                fill(120, 210, 120)
+            }
+            ellipse(this.pos.x- i*15, this.pos.y, 16,16)
         }
     }
 
     update(){
         this.pos.x += 1
     }
+
+    eats(food){
+        if (this.pos.x > food.pos.x && this.pos.x < food.pos.x + food.size && this.pos.y > food.pos.x && this.pos.y < food.pos.y + food.size) {
+            console.log(eaten)  
+            // this.len += 1
+            // food.eaten = true
+            // f = new food()  
+        }
+    }
+
 
     checkEdges(){
         if(this.pos.x == width){
@@ -42,13 +55,15 @@ class snake {
 
 class food {
     constructor(){
-        this.pos = createVector(foodx, foody)
+        this.pos = createVector(random(width), random(height))
         this.eaten = false
+        this.size = 20
     }
 
     display(){
         fill (0,120,255)
-        ellipse(this.pos.x, this.pos.y, 18,18)
+
+        rect(this.pos.x, this.pos.y, this.size, this.size)
     }
 }
 
@@ -56,8 +71,6 @@ class food {
 function setup(){
     createCanvas(400,400)
 
-    foodx = random(width)
-    foody = random(height)
     s = new snake()
     f = new food()
 }
@@ -65,6 +78,7 @@ function setup(){
 function draw(){
     background(0)
     s.run()
-    
-    f.display()
+    if(f.eaten == false) {
+        f.display()
+    }
 }
