@@ -25,7 +25,7 @@ function draw() {
 
     for (let i=0; i <100 ; ++i) {
         inputs = [points[i].x, points[i].y]
-        let target = points[i].label 
+         let target = points[i].label 
 
         //brain.train( inputs , target )
 
