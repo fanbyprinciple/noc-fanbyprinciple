@@ -1,9 +1,12 @@
-
+var s
+var f
 
 class snake {
     constructor(){
         this.pos = createVector(width/2, height/2)
         this.len = 3
+        this.vel = createVector(0,0)
+
     }
 
     display(){
@@ -14,12 +17,14 @@ class snake {
             } else {
                 fill(120, 210, 120)
             }
+            
             ellipse(this.pos.x- i*15, this.pos.y, 16,16)
         }
     }
 
     update(){
-        this.pos.x += 1
+        console.log(this.pos)
+        this.pos.add(this.vel)
     }
 
     eats(food){
@@ -64,6 +69,20 @@ class food {
         fill (0,120,255)
 
         rect(this.pos.x, this.pos.y, this.size, this.size)
+    }
+}
+
+
+function keyPressed() {
+    if (keyCode === LEFT_ARROW) {
+        console.log("Left arrow")
+        s.vel.x = -1
+    } else if (keyCode === RIGHT_ARROW) {
+        s.vel.x = 1
+    } else if (keyCode === UP_ARROW) {
+        s.vel.y = -1
+    } else if (keyCode === DOWN_ARROW) {
+        s.vel.y = 1
     }
 }
 
