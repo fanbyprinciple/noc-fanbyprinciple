@@ -1,14 +1,18 @@
 class Calvin {
     constructor(){
-      this.r = 50
-      this.x = this.r
+      this.r = 130 
+      this.x = 50 
       this.y = height - 50
       this.vy = 0
       this.gravity = 0.5
     }
     
-    jump(){  
-      this.vy = -10
+    jump(){
+        print(this.y )
+        if(this.y == 320){
+            this.vy = -13 
+        }
+       
     }
     
     move(){
@@ -19,6 +23,8 @@ class Calvin {
     }
     
     show(){
-      rect(this.x, this.y,this.r, this.r)
+        
+       image(cImg,this.x,this.y, this.r, this.r)  
+      //rect(this.x, this.y,this.r, this.r)
     }
   }
