@@ -23,13 +23,13 @@ class snake {
     }
 
     update(){
-        console.log(this.pos)
+        //console.log(this.pos)
         this.pos.add(this.vel)
     }
 
     eats(food){
         if (this.pos.x > food.pos.x && this.pos.x < food.pos.x + food.size && this.pos.y > food.pos.x && this.pos.y < food.pos.y + food.size) {
-            console.log(eaten)  
+            console.log("eaten")  
             // this.len += 1
             // food.eaten = true
             // f = new food()  
@@ -51,9 +51,10 @@ class snake {
         }  
     }
 
-    run(){
+    run(food){
         this.checkEdges()
         this.update()
+        this.eats(food)
         this.display()
     }
 }
@@ -88,7 +89,7 @@ function keyPressed() {
 
 
 function setup(){
-    createCanvas(400,400)
+    createCanvas(600,600)
 
     s = new snake()
     f = new food()
@@ -96,7 +97,7 @@ function setup(){
 
 function draw(){
     background(0)
-    s.run()
+    s.run(f)
     if(f.eaten == false) {
         f.display()
     }
