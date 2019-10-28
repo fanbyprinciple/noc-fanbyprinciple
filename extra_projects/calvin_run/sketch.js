@@ -28,6 +28,8 @@ function draw() {
       //print("yeah!")
       parents.push(new Parent())
   }
+
+  
   background(255);
   calvin.show()
   calvin.move()
@@ -36,5 +38,14 @@ function draw() {
       // print('usher!!')
       p.move()
       p.show()
+      //  console.log(calvin.hits(p))
+      if (calvin.hits(p)){
+          console.log("hit")
+          noLoop()
+      }
+
+      if(p.x < 0){
+          parents.shift()
+      }
   }
 }
