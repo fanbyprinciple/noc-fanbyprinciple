@@ -5,7 +5,7 @@ This will include my attempts at additional modifications in the code also. So d
 
 an example of weirdnes of p5.js:
 
-![](slither.io.gif)
+![](RUBIK.gif)
 
 
 Notes:
