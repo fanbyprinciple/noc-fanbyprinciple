@@ -21,7 +21,7 @@ function setup(){
 
 
                 colour = colors[count%5]
-                count = count + 1
+                count = count +1
                 print(colour)
                 cube[i][j][k] = new Box(x,y,z,len, colour)
             }
