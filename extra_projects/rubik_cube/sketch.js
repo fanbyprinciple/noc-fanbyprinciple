@@ -3,10 +3,12 @@ dim = 3
 cube = new Array(dim)
 len = 50
 
+colors = ['red', 'white', 'green', 'yellow', 'blue', 'orange']
 
 function setup(){
     createCanvas(800,800,WEBGL)
 
+    count = 0
     for (i =0 ; i < dim ; ++i ){
         cube[i] = new Array(dim)
         for(j =0 ; j < dim ; ++j){
@@ -17,8 +19,11 @@ function setup(){
                 y = len * j - offset
                 z = len * k - offset
 
-                
-                cube[i][j][k] = new Box(x,y,z,len)
+
+                colour = colors[count%5]
+                count = count + 1
+                print(colour)
+                cube[i][j][k] = new Box(x,y,z,len, colour)
             }
         }
     }

@@ -1,12 +1,13 @@
 class Box{
 
-    constructor(x,y,z, len){
+    constructor(x,y,z, len,colour){
         this.pos = createVector(x,y,z)
         this.len = len
+        this.colour = colour
     }
 
     show(rx, ry){
-        fill (255)
+        fill (this.colour)
         stroke (0)
         strokeWeight(8)
         push ()
