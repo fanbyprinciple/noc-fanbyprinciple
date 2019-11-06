@@ -2,27 +2,38 @@ function setup(){
     createCanvas(600,600)
     background(0)
 
-    len = 60
+    len = 30
     a = PI/6
 
-    translate(width/2, height)
-
-    for ( i=1; i < 10000; i++){
-        resetMatrix()
-        n = i
-        steps = 0
+    for (i =1 ; i <1000; ++i){
+    
+        s = new Array()
+        
+        m = i
         do {
-            console.log("step ",steps, " : ",n)
-            n = collatz(n)
-            if(n%2 == 0) rotate (a) 
+            s.push(m)
+            m=collatz(m)
+        } while(m!= 1)
+        s.push(1)
+        s.reverse()
+
+
+    
+
+        resetMatrix()
+        translate(width/3, height/2)
+
+        for (j =0 ; j < s.length ; j++){
+            value = s[j]
+            if(value%2 == 0) rotate (a) 
             else rotate(-a)
-            steps += 1 
-            stroke(255)
+
+            strokeWeight(4)
+            stroke(130,0,140,50)
             line (0,0,0,-len)
             translate(0, -len)
 
-        
-        } while (n != 1)
+        }
 
     }
 
@@ -38,6 +49,6 @@ function collatz(n){
     if(n%2 ==0){
         return n/2
     } else {
-        return 3 * n + 1
+        return (3 * n + 1)/2
     }
 }
