@@ -20,10 +20,15 @@ function setup(){
                 z = len * k - offset
 
 
-                colour = colors[count%5]
+                colour = colors[0]
                 count = count +1
+                if (count <= 9) {
+                    cube[i][j][k] = new Box(x,y,z,len, colors[0])  
+                } else {
+                    cube[i][j][k] = new Box(x,y,z,len,colors[1] )
+                }
                 print(colour)
-                cube[i][j][k] = new Box(x,y,z,len, colour)
+                
             }
         }
     }
