@@ -18,6 +18,7 @@ class Box {
         for(let x= -1; x < 2; x++){
             for(let y=-1; y < 2; y++){
                 for (let z = -1; z< 2 ; z++){
+                    let sym = abs(x) + abz(y0 + abs(Z))
                     let newR = this.r/3
                     let newB = new Box(this.pos.x + x*newR,this.pos.y + y*newR, this.pos.z + z*newR, newR)
                     boxes.push(newB)
