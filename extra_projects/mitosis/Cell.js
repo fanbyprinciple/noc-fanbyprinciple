@@ -1,17 +1,22 @@
 class Cell{
-    constructor(x,y, r) {
-        this.pos = createVector(x,y)
+    constructor() {
+        this.pos = createVector(random(width),random(height))
         this.r = 20
+        this.c = color(random(255), 0,  random(255))
+    }
+
+    clicked(){
+        
     }
 
     show(){
-        fill (0, 34, 67)
+        fill(this.c)
         ellipse(this.pos.x, this.pos.y, this.r*2, this.r * 2)
     }
 
     move(){
-        this.pos.x += random (-0.1,0.1)
-        this.pos.y += random (-0.1,-0.1)
+        this.vel = p5.Vector.random2D()
+        this.pos.add(this.vel)
     }
 
     checkEdges(){

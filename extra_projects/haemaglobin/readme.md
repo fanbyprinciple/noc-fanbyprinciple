@@ -9,3 +9,5 @@ to do:\n
     3. add a name to each globin\n
 
 ![screenshot](screenshot.png)
+
+![gif](globin.gif)
