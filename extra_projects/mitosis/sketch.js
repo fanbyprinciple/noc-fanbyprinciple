@@ -1,8 +1,8 @@
 var cells = []
 
 function setup(){
-    createCanvas(400,400)
-    cell = new Cell(200,200,20)
+    createCanvas(700,700)
+    cell = new Cell(createVector(random(width), random(height)), 60, color(random(100,255),0, random(100,255)))
     x=cells.push(cell)
 }
 
@@ -17,8 +17,12 @@ function draw(){
 
 function mousePressed(){
     for (var i=0; i<cells.length;++i){
-       if(cells[i].clicked()) {
-           
+       if(cells[i].clicked(mouseX, mouseY)) {
+           let cellA = cells[i].mitosis()
+           let cellB = cells[i].mitosis()
+           cells.push(cellA)
+           cells.push(cellB)
+            console.log("Clicked !")
        }
     }
     

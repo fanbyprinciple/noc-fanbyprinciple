@@ -1,12 +1,23 @@
 class Cell{
-    constructor() {
-        this.pos = createVector(random(width),random(height))
-        this.r = 20
-        this.c = color(random(255), 0,  random(255))
+    constructor(pos, r,c) {
+        this.pos = pos || createVector(random(width), random(height))
+        this.r = r || 60
+        this.c = c || color(random(100,255),0,random(100,255))
     }
 
-    clicked(){
-        
+    clicked(x,y){
+        var d = dist(this.pos.x, this.pos.y, x, y)
+        if (d < this.r) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    mitosis() {
+        let cellA = new Cell(this.pos, this.r/2, this.c)
+
+        return cellA
     }
 
     show(){
