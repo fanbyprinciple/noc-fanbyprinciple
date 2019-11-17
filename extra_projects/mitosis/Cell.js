@@ -1,8 +1,13 @@
 class Cell{
     constructor(pos, r,c) {
-        this.pos = pos || createVector(random(width), random(height))
+        if (pos){
+            this.pos = pos.copy()
+        } else {
+            this.pos =  createVector(random(width), random(height))
+        }
+
         this.r = r || 60
-        this.c = c || color(random(100,255),0,random(100,255))
+        this.c = c || color(random(100,255),0,random(100,255), 100)
     }
 
     clicked(x,y){
@@ -21,6 +26,7 @@ class Cell{
     }
 
     show(){
+        noStroke()
         fill(this.c)
         ellipse(this.pos.x, this.pos.y, this.r*2, this.r * 2)
     }
