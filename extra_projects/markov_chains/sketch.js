@@ -1,22 +1,37 @@
-var txt = "Ashish may take a hashish but he ramains Ashish and does not become a hashashin."
-var order = 4
+//var txt = "Ashish may take a hashish but he ramains Ashish and does not become a hashashin."
+var order = 2
+var names
 var ngram = {}
 var button
+var txt
+
+function preload(){
+    names = loadStrings('./extra_projects/markov_chains/names.txt')
+    console.log(names)
+}
 
 function setup(){
     noCanvas()
 
-    for(var i=0 ; i < txt.length - order+1; ++i){
-        var gram = txt.substring(i,i+order)
+    for(var j = 0; j <names.length ; ++ j){
+        
+        txt  = names[j]
+        console.log(names[j])
+    
 
-        if(!ngram[gram]){
-            ngram[gram] = []
+        for(var i=0 ; i < txt.length - order+1; ++i){
+            var gram = txt.substring(i,i+order)
+
+            if(!ngram[gram]){
+                ngram[gram] = []
+            }   
+        
+            ngram[gram].push(txt.charAt(i+order))
+        
+        
+
+
         }
-        
-        ngram[gram].push(txt.charAt(i+order))
-        
-        
-
 
     }
 
