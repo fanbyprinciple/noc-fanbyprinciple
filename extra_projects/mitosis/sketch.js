@@ -22,6 +22,7 @@ function mousePressed(){
            let cellB = cells[i].mitosis()
            cells.push(cellA)
            cells.push(cellB)
+           cells.splice(i, 1)
             console.log("Clicked !")
        }
     }

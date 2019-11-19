@@ -4,6 +4,7 @@ var names
 var ngram = {}
 var button
 var txt
+var beginnings = []
 
 function preload(){
     names = loadStrings('./extra_projects/markov_chains/names.txt')
@@ -21,6 +22,10 @@ function setup(){
 
         for(var i=0 ; i < txt.length - order+1; ++i){
             var gram = txt.substring(i,i+order)
+
+            if(i == 0){
+                beginnings.push(gram)
+            }
 
             if(!ngram[gram]){
                 ngram[gram] = []

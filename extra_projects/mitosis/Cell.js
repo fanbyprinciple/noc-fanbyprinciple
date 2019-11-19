@@ -20,7 +20,9 @@ class Cell{
     }
 
     mitosis() {
-        let cellA = new Cell(this.pos, this.r/2, this.c)
+    
+        this.pos.x += random(-this.r,this.r)
+        let cellA = new Cell(this.pos, this.r * 0.8, this.c)
 
         return cellA
     }
