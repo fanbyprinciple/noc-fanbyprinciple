@@ -1,4 +1,4 @@
-w =20
+w =10
 
 function setup(){
     createCanvas(800,200)
