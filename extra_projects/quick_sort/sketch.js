@@ -10,8 +10,7 @@ function setup(){
     console.log(values)
 
     frameRate(5)
-
-    quickSort(values, 0, values.length - 1)
+    if (mouseX < 50) quickSort(values, 0, values.length - 1)
 
 }
 
