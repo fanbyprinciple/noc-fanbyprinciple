@@ -5,6 +5,7 @@ var cnv
 function setup() {
   cnv = createCanvas(500, 500);
   cnv.mouseOver(changeText)
+  
   noStroke();
   
   phase = 0;
