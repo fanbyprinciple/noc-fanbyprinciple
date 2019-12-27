@@ -1,46 +1,46 @@
 class Ray {
   constructor(c){
     this.color = c
-    console.log(this.color)
     this.x = random(width)
     this.y = random(height)
+    this.xspeed = 1
+    this.yspeed = 1
+    
   }
   
   show(){
     noStroke()
-    fill(random([this.color, 'magenta']))
+    fill(random([this.color, 'yellow', 'green']))
     ellipse(this.x, this.y, 10, 10)
   }
   
   moveCircle() {
-    this.x += 1
-    let tempx = this.x
-    let tempy =sqrt(100000 - (int(this.x) * int(this.x)))  
-    //this.y +=  5 * random([-1,1,1,1,1,1])
-    console.log(this.x,(100000 - (this.x * this.x))  )
-    this.y = tempy 
+    
   }
   
   move(){
-    this.x += 1
-    this.y += 1
+    this.x += this.xspeed
+    this.y += this.yspeed
   }
   
   checkEdge() {
     if (this.x < 0) {
-      this.x = width
+      this.xspeed *= -1
     } 
     
-    if(this.x > width){
-      this.x = 0
+    else if(this.x > width){
+      //this.x = 0
+      this.xspeed *= -1
     }
     
-    if (this.y < 0) {
-      this.y = height
+    else if (this.y < 0) {
+      //this.y = height
+      this.yspeed *= -1
     } 
     
-    if(this.y > height){
-      this.y = 0
+    else if(this.y > height){
+      //this.y = 0
+      this.yspeed *= -1
     }
     
     
@@ -49,6 +49,7 @@ class Ray {
   run(){
     this.show()
     this.move()
+    this.checkEdge()
     
   }
   
@@ -57,7 +58,7 @@ class Ray {
 
 var b = []
 var r
-var SIZE = 100
+var SIZE = 1
 
 function setup() {
   createCanvas(400, 400);
@@ -72,7 +73,7 @@ function setup() {
 }
 
 function draw() {
-
+  background(51)
   for(let i=0; i < SIZE ; ++i){
     b[i].run()
   }
