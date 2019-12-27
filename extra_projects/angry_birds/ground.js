@@ -1,8 +1,8 @@
-class ground extends Box{
+class Ground extends Box {
     constructor(x,y,w,h){
         super(x,y,w,h)
+        this.body.isStatic = true
     }
-
 }
 
 layer_names = []
@@ -42,3 +42,7 @@ for (layer_name, layer_activation) in zip(layer_names, activations):
             plt.imshow(display_grid, aspect='auto', cmap='viridis')
    
            
+    
+
+
+}
