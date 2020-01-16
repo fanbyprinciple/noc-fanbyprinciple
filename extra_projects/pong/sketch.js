@@ -5,6 +5,17 @@ class Paddle {
     constructor(x,y){
         this.x = x
         this.y = y
+        this.vel = 0
+    }
+
+    update() {
+        this.y += this.vel
+    }
+
+    checkEdges() {
+        if(this.y <0 || this.y + 100 >height) {
+            this.vel =0
+        }
     }
 
     show() {
@@ -13,6 +24,8 @@ class Paddle {
     }
 
     run() {
+        this.update()
+        this.checkEdges()
         this.show()
     }
 
@@ -78,13 +91,28 @@ var puck
 var Rpaddle
 var Lpaddle
 
+function keyPressed(){
+    if(key == 'w'){
+        Lpaddle.vel = -2
+    }
+    if (key == 's' ){
+        Lpaddle.vel = 2
+    }
+    
+    if(keyCode == UP_ARROW ){
+        Rpaddle.vel = -2
+    } 
 
+    if(keyCode == DOWN_ARROW){
+        Rpaddle.vel = 2
+    }
+}
 
 function setup(){
     createCanvas(600,400)
     puck =  new Puck()
     Lpaddle = new Paddle(10, height/2)
-    Rpaddle = new Paddle(width - 40, height/2 )
+    Rpaddle = new Paddle(width - 35, height/2 )
 
 }
 
