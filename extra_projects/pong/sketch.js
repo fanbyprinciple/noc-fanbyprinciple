@@ -18,6 +18,13 @@ class Paddle {
         }
     }
 
+    checkCollision() {
+        if (puck.x > this.x && puck.y > this.y && puck.y < this.y + 80){
+            puck.yvel *= 1
+            puck.xvel *= -1
+        }
+    }
+
     show() {
         fill(255)
         rect(this.x,this.y, 25,100)
@@ -26,6 +33,7 @@ class Paddle {
     run() {
         this.update()
         this.checkEdges()
+        this.checkCollision()
         this.show()
     }
 
@@ -56,6 +64,7 @@ class Puck {
         this.yvel = 5 * this.ydir
 
     }
+
 
     checkEdges(){
         if (this.y < 0 || this.y >height) {
