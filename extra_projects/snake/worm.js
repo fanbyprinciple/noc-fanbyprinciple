@@ -26,12 +26,12 @@ class Snake {
         
 
     show(){
-        
         for(let i=0; i < this.len; ++i){
-            noStroke()
-            fill (0)
-            rect(this.body[i].x, this.body[i].y, 1,1)
-        }
+                noStroke()
+                fill (prevColor)
+                rect(this.body[i].x, this.body[i].y, 1,1)
+            }
+        
         
     }
 
@@ -118,6 +118,8 @@ function setup(){
     
     frameRate(10)
 
+    prevColor =  color(0,0,0)
+    
     w = floor(width/rez)
     h = floor(width/rez)
 
@@ -128,11 +130,25 @@ function setup(){
 
 //count =0
 
+var foodColor
+var prevColor
 
 function foodLocation(){
-    let foodx = floor(random(w))
-    let foody = floor(random(h))
-    food = createVector(foodx, foody)
+    if (snake.len == 1){
+        foodColor = color(random(255), random(255),random(255))
+    
+        let foodx = floor(random(w))
+        let foody = floor(random(h))
+        food = createVector(foodx, foody)
+    } else {
+        prevColor = foodColor
+        foodColor = color(random(255), random(255),random(255))
+    
+        let foodx = floor(random(w))
+        let foody = floor(random(h))
+        food = createVector(foodx, foody)
+    }
+    
 }
 
 function foodEaten(){
@@ -145,8 +161,6 @@ function foodEaten(){
 
     return false
 
-    
-    
 }
 
 
@@ -160,11 +174,12 @@ function draw(){
     //     count =0
     // }
     // count = count + 1
+   
     snake.run()
 
     
     noStroke()
-    fill(255,0,0)
+    fill(foodColor)
     rect(food.x,food.y,1,1)
     if (foodEaten()){
         console.log('yum')
