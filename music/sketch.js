@@ -5,8 +5,8 @@ var sliderPan
 var sliderJump
 
 var playButton
-var jumpButton;
-
+var jumpButton
+var amp
 
 
 function preload(){
@@ -16,7 +16,10 @@ function preload(){
 function setup(){
     createCanvas(400,200)
 
+    amp = new p5.Amplitude()
+
     sliderVolume = createSlider(0,1,0.5,0.01)  
+    
     sliderRate = createSlider(0,3,1,0.01)
     sliderPan = createSlider(-1,1,0,0.01)
     sliderJump = createSlider(0,song.duration(),0,0.01)
@@ -64,6 +67,15 @@ function draw(){
 
     //background(song.currentTime()*10,0,255)
     //print(song.currentTime())
+
+    background(51)
+
+    fill ('pink')
+    vol = amp.getLevel()
+    let diam = map(vol,0,0.3,10,200)
+    console.log(vol)
+
+    ellipse(width/2, height/2, diam + random(2), diam + random(2))
 
     song.setVolume(sliderVolume.value())
     song.pan(sliderPan.value())

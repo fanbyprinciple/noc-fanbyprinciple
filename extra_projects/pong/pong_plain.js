@@ -1,3 +1,6 @@
+//https://thoughtbot.com/blog/pong-clone-in-javascript
+
+
 var animate = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback){window.setTimeout(callback, 1000/60)}
 
 // requestAnimationFrame is much more optimised than timeout function
@@ -35,13 +38,8 @@ class Paddle {
         context.fillRect(this.x, this.y, this.width, this.height)
 
     }
-
-        
+      
 }
-
-
-
-
 
 class Player {
 
@@ -78,8 +76,8 @@ class Ball {
     render () {
         context.beginPath()
         context.arc(this.x, this.y, this.radius, 2 * Math.PI, false)
-        context.fillStyle("#00000")
-        context.fill ()
+        context.fillStyle = "#00000"
+    
 
     }
     
@@ -107,7 +105,7 @@ function globalRender() {
     context.fillRect(0,0,width,height)
     player.render()
     computer.render()
-    ball.render
+    ball.render()
 }
 
 
