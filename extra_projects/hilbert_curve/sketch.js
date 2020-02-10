@@ -1,4 +1,4 @@
-let order = 4
+let order = 7
 let N  = Math.floor(Math.pow(2,order))
 let total = N*N 
 
@@ -7,7 +7,7 @@ let path = []
 
 
 function setup(){
-    createCanvas(512,512)
+    createCanvas(528,528)
     colorMode(HSB, 260,255,255)
     background(0)
 
@@ -23,17 +23,13 @@ function setup(){
 }
 
 function hilbert(i){
-    let points = []
-    let a = createVector(0,0)
-    let b = createVector(0,1)
-    let c = createVector(1,1)
-    let d = createVector(1,0)
-
-    points.push(a)
-    points.push(b)
-    points.push(c)
-    points.push(d)
-
+    const points = [
+        new p5.Vector(0, 0),
+        new p5.Vector(0, 1),
+        new p5.Vector(1, 1),
+        new p5.Vector(1, 0)
+      ];
+    
     
     let index = i & 3
     let v = points[index]
@@ -45,21 +41,21 @@ function hilbert(i){
     index = i & 3
     let len = Math.pow(2,j)
     if (index == 0){
-        temp = v.x
+        let temp = v.x
         v.x = v.y
         v.y = temp
 
     }else if(index == 1){
 
-        v.y+= j
+        v.y+= len
     }else if (index == 2){
-        v.y+= j
-        v.x+= j
+        v.y+= len
+        v.x+= len
 
     }else if (index==3){
         temp = len -1 -v.x
         v.x = len -1 - v.y
-        v.y = j
+        v.y = len
 
         v.x+=j
     }
@@ -74,7 +70,7 @@ function draw(){
     stroke (255)
     strokeWeight(2)
     noFill()
-    beginShape()
+    //beginShape()
     
     for (let i = 1 ; i< counter; ++i){
         let h = map(i,0,path.length,0,360)
@@ -82,16 +78,16 @@ function draw(){
         line(path[i].x, path[i].y, path[i-1].x, path[i-1].y)
     }
 
-    endShape()
+    //endShape()
     counter +=10
 
     if (counter >= path.length){
         counter = 0 
     }
 
-    strokeWeight(1)
-    for (let i = 0; i < path.length; i++){
-        point(path[i].x, path[i].y)
-        text(i, path[i].x + 5, path[i].y - 5)
-    }
+    // strokeWeight(1)
+    // for (let i = 0; i < path.length; i++){
+    //     point(path[i].x, path[i].y)
+    //     text(i, path[i].x + 5, path[i].y - 5)
+    // }
 }
