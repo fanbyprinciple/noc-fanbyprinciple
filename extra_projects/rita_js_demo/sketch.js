@@ -1,18 +1,34 @@
 var input
 var button
+var dutton
 
 var lexicon
+var ptext = ''
 
 function setup(){
     noCanvas()
-    createP('Type anything to see nouns change. Rita.js.')
+    resetSketch()
+    }
+
+function resetSketch(){
+    removeElements()
+    createP('Type anything to see nouns change with rhymes. Rita.js.')
     lexicon = new RiLexicon()
     console.log("Lexicon initialised. Here is a random word, how about a ", lexicon.randomWord(5))
-    input = createInput("It was a dark and stormy night.")
+    input = createInput(ptext)
     button = createButton('submit')
+    dutton = createButton('reset')
     input.changed(processRita)
     button.mousePressed(processRita)
+    dutton.mousePressed(deleteText)
     input.size(200)
+
+}
+
+function deleteText(){
+    SelectText = selectAll('.text')
+    console.log(SelectText)
+    resetSketch()
 }
 
 function processRita(){
@@ -25,12 +41,13 @@ function processRita(){
     var output = ''
     for (var i=0; i<words.length; ++i){
         if(/nn.*/.test(pos[i])){
-            output += " " +lexicon.randomWord(pos[i])
+            output += " " +lexicon.rhymes(words[i])[random(lexicon.rhymes(words[i])).length]
         } else {
             output += " " + words[i]    
         }
         
     }
     console.log(output)
-    createP(output)
+    ptext = output
+    let mydiv = createP(ptext).addClass('text')
 }
