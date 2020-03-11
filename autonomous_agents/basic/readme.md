@@ -1,5 +1,5 @@
-### autonomous agents
+# autonomous agents
 
-# basic steering behaviour
+### basic steering behaviour
 
 ![](rocket.gif)
