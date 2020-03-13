@@ -61,15 +61,22 @@ class Toothpick{
         } 
     }
 
-    show(){
-        stroke (0)
+    show(factor){
+        stroke (2/factor)
+        if(this.newPick){
+            stroke(0,0,255)
+        }
         strokeWeight(2)
         line (this.ax, this.ay, this.bx, this.by)
+        //this.newPick = false
 
     }
 }
 
 let picks = []
+
+let minX
+let maxX
 
 function setup(){
     createCanvas(600,600)
@@ -77,13 +84,16 @@ function setup(){
     // for(let i=0; i<; ++i){
     //     picks[i] = new Toothpick
     // }
-    noLoop()
+
+    minX = -width/2
+    maxX = width/2
+    //noLoop()
 }
 
-function mousePressed(){
-    redraw()
+// function mousePressed(){
+//     redraw()
 
-}
+// }
 
 function draw(){
     background(255)
@@ -91,17 +101,34 @@ function draw(){
     let next = []
 
     translate(width/2, height/2)
+    let factor = float(width)/ (maxX -minX)
+    scale(factor)
+
     picks.forEach((pick)=>{
         pick.show()
-        let nextA = pick.createA(picks)
-        let nextB = pick.createB(picks)
+        minX = min(pick.ax, minX)
+        maxX = max(pick.ax, maxX)
+    })
 
-        if(nextA != null){
-            next.push(nextA)
+    
+    picks.forEach((pick)=>{
+        
+        if(pick.newPick){
+
+            let nextA = pick.createA(picks)
+            let nextB = pick.createB(picks)
+
+            if(nextA != null){
+                next.push(nextA)
+            }
+            if(nextB != null){
+                next.push(nextB)
+            }
+
+            pick.newPick = false
         }
-        if(nextB != null){
-            next.push(nextB)
-        }
+        
+        
 
     })
 
