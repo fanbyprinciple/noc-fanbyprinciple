@@ -19,13 +19,13 @@ function draw(){
 
     var k = n /d
 
-    background(51)
+    background(255)
     
     push ()
     translate(width/2,  height/2)
 
     beginShape()
-    stroke(255)
+    stroke(255,0,0)
     noFill()
     strokeWeight(2)
     for (var a =0; a < TWO_PI* reduceDenominator(n, d); a+=0.2){
