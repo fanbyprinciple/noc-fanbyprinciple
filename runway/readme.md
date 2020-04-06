@@ -5,3 +5,7 @@ WHat makes it complicated is that it is paid.
 ### first failed attempt
 
 ![](failed.png)
+
+### image to text example
+
+![](myim2txt.png)
