@@ -7,9 +7,8 @@ let board = [
     ['','','']
 ]
 
-let ai = 'X'
-let human = 'O'
-let currentPlayer 
+let players = ['X','O']
+let currentPlayer
 let available = []
 
 function setup(){
@@ -20,8 +19,7 @@ function setup(){
     //     currentPlayer = players[1]
     // }
     frameRate(30)
-    currentPlayer = human
-    //currentPlayer = Math.floor(random(players.length))
+    currentPlayer = Math.floor(random(players.length))
     for (let i=0; i<3; ++i){
         for(let j=0; j <3; ++j){
             available.push([i,j])
@@ -37,12 +35,8 @@ function nextTurn(){
     let spot = available.splice(index,1)[0]
     let i = spot[0]
     let j = spot[1]
-    board[i][j] = currentPlayer
-    if(currentPlayer == human){
-        currentPlayer = ai
-    } else {
-        currentPlayer = human
-    }
+    board[i][j] = players[currentPlayer]
+    currentPlayer = (currentPlayer + 1) % players.length
 }
 
 //faulty
@@ -67,26 +61,9 @@ function playerTurn(x,y){
     }
 }
 
-function bestMove(){
-    nextTurn()
-}
-
 function mousePressed(){
-    //playerTurn(mouseX,mouseY)
+    playerTurn(mouseX,mouseY)
     //nextTurn()
-    let w = width/3
-    let h = height/3
-    
-    if(currentPlayer == human){
-        let i = floor(mouseX/ w)
-        let j = floor(mouseY/ h)
-
-        if(board[i][j] == ''){
-            board[i][j] = human
-            currentPlayer = ai
-            bestMove()
-        }
-    }
 }
 
 function checkWinner(){
@@ -109,14 +86,7 @@ function checkWinner(){
         winner = board[2][0]
     }
 
-    let openSpots = 0
-    for(let i=0; i <3;i++){
-        for (let j=0;j <3;j++){
-            openSpots++
-        }
-    }
-
-    if(winner == null && openSpots == 0){
+    if(winner == null && available.length == 0){
         return 'tie'
     } else {
         //console.log(winner)
@@ -143,11 +113,11 @@ function draw(){
             y = h * j + h/2
             let spot = board[i][j]
             //stroke(random(255),random(255),random(255))
-            if(spot == human){
+            if(spot == players[1]){
                 noFill()
                 //ellipseMode(CENTER)
                 ellipse(x,y,w/2)
-            } else if(spot == ai){
+            } else if(spot == players[0]){
                 let xr = w/4
             
                 line (x-xr, y-xr, x+xr, y+xr)
@@ -169,7 +139,7 @@ function draw(){
             resultP.html(`${result} wins!`)
         }
     } else {
-        //nextTurn()
+        nextTurn()
     }
 
 }
