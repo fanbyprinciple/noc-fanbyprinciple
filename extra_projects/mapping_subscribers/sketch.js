@@ -68,7 +68,7 @@ function draw(){
         fill(frameCount %255,0,200,100)
         const zoom = myMap.zoom()
         const scl = pow(2,zoom)
-        ellipse(pix.x,pix.y,country.diameter *scl)
+        ellipse(pix.x,pix.y,country.diameter *scl * random (frameCount%2)*0.8)
     }
     
 }

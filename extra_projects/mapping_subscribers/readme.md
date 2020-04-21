@@ -7,3 +7,7 @@ Congrats on crossing 1M subs Dan !
 https://www.youtube.com/watch?v=Ae73YY_GAU8
 
 ![](map.gif)
+
+It opens up opportunity to experiment:
+
+![](map2.gif)
