@@ -10,3 +10,7 @@ Simple explanation:
 Ray detection:
 
 ![](ray_detection.gif)
+
+Ray detection and casting on all walls:
+
+![](ray_casting.gif)
