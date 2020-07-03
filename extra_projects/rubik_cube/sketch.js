@@ -9,7 +9,7 @@ function setup(){
     createCanvas(800,800,WEBGL)
 
     count = 0
-    for (i =0 ; i < dim ; ++i ){
+    for (i =0 ;  i < dim ; ++i ){
         cube[i] = new Array(dim)
         for(j =0 ; j < dim ; ++j){
             cube[i][j] = new Array(dim)
