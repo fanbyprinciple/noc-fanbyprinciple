@@ -16,3 +16,15 @@ It uses class Cubie.js
 and the file new_sketch.js
 
 ![](cubie.gif)
+
+refer here for reference:
+
+and follow along rubik cube part 2 for coding train you can do it.
+
+https://editor.p5js.org/zl25drexel/sketches/9K3PnFQQ_
+
+my work:
+
+https://editor.p5js.org/fanbyprinciple/sketches/AQ0ovwlMj
+
+continue
