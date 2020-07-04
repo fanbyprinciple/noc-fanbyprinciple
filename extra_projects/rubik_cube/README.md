@@ -23,8 +23,13 @@ and follow along rubik cube part 2 for coding train you can do it.
 
 https://editor.p5js.org/zl25drexel/sketches/9K3PnFQQ_
 
+Drexel's recreation
+
+![](drexels_cube.gif)
+
 my work:
+code in rubik_cube_matrix
 
 https://editor.p5js.org/fanbyprinciple/sketches/AQ0ovwlMj
 
-continue
+![](my_cube.gif)
