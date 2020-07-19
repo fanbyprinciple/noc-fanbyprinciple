@@ -8,7 +8,11 @@ reference - https://www.youtube.com/watch?v=0ZONMNUKTfU
 My contribution -
 
 1. Using square contours in p5.js
-2. Using for loops instead of switch , because you know I like torturing myself.
+
+In using this I drew the boundaries from center of square to the edge.
+
+2. Using for loops instead of switch 
+Because you know, I like torturing myself.
 
 live at - https://editor.p5js.org/fanbyprinciple/present/irH3GxBi3
 
