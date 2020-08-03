@@ -14,3 +14,7 @@ https://www.youtube.com/watch?v=HyK_Q5rrcr4
 ## Part 2 : Problem with grid stepping
 
 ![](problem_with_grid_stepping.png)
+
+It only takes right a valid boundary
+
+![](my_way_is_right.png)
