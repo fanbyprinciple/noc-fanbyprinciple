@@ -18,3 +18,6 @@ https://www.youtube.com/watch?v=HyK_Q5rrcr4
 It only takes right a valid boundary
 
 ![](my_way_is_right.png)
+
+THe final finessed product after removing bug:
+![](recursive_backtracker.gif)

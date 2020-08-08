@@ -24,7 +24,7 @@ function setup() {
 }
 
 function draw() {
-    frameRate(3)
+    //frameRate(3)
     background(51)
 
     for (var i=0; i< grid.length; i++){
@@ -37,13 +37,14 @@ function draw() {
     
     if (next){
         next.visited = true
+        
         stack.push (current)
 
         removeWalls(current, next)
+        
         current  = next
-    }
 
-    else if(stack.length >0){
+    } else if(stack.length >0){
         current = stack.pop()
     }
 }
@@ -52,7 +53,7 @@ function index(i,j){
         return -1
     }
     //console.log(i,j)
-    return i + j * width
+    return i + j * cols;
 }
 
 

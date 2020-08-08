@@ -8,3 +8,7 @@ https://www.youtube.com/watch?v=l8SiJ-RmeHU&list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4Fi
 
 This is how it should look:
 ![](how_it_should_look.gif)
+
+
+Planets in 3d:
+![](planet_3d.gif)
