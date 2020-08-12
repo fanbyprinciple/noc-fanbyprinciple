@@ -12,13 +12,16 @@ let bkgImg
 
 
 function preload() {
-    dotImg = loadImage('dot.png')
-    boxImg = loadImage('equals.png')
-    bkgimg = loadImage('skyBackground.png')
+    console.log("Added preload")
+    dotImg = loadImage('./dot.png')
+    boxImg = loadImage('./equals.png')
+    bkgimg = loadImage('./skyBackground.png')
 }
+
 function setup(){
     createCanvas(711,400)
 
+    console.log("It works here")
     engine = Engine.create()
     world = engine.world
 
