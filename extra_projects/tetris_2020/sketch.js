@@ -3,7 +3,7 @@ class Square {
     //console.log(i)
     this.x = i[0]
     this.y = i[1]
-    this.yspeed = 0.25
+    this.yspeed = 0.05
   }
   
   show() {
@@ -19,13 +19,58 @@ class Square {
       this.yspeed = 0
     }
   }
-  checkBlock(){
+  
+  checkBlock(this_index){
     
-  }
-  
-  
+    if(this.x > width){
+      this.x = 0
+    } else if(this.x <0) {
+      this.x = width - size
+    }
+    
+    let new_squares = squares
+    //new_squares = new_squares.pop(this)
+    for(let i=0; i< new_squares.length; ++i){
+      if(i != this_index){
+        if (this.y == new_squares[i].y && this.x == new_squares[i].x){
+         console.log("here")
+         this.yspeed = 0
+         this.y = new_squares[i].y -size
+
+       }
+      }
+    }
+  } // checkblock
   
 }
+
+
+
+function clearLine() {
+  all_filled = False
+  for(let i=0; i<width; i+=size){
+    for(let j=0; j < squares.length; ++j){
+      // TODO
+    }
+  }
+} 
+
+
+function keyPressed() {
+  //console.log("keyPressed")
+  if(keyCode == LEFT_ARROW){
+    for(let i=0; i< squares.length; ++i){
+      squares[i].x -= size
+  
+    }
+  } else if (keyCode== RIGHT_ARROW ){
+    for(let i=0; i< squares.length; ++i){
+      squares[i].x += size
+    
+    }
+  }
+}
+
 
 let squares = []
 let indexes = []
@@ -45,7 +90,7 @@ function setup() {
     }
   }
   
-  for(let i=0; i < 10; ++i){
+  for(let i=0; i < 100; ++i){
     squares.push(new Square(random(indexes)))
   }
   
@@ -72,6 +117,7 @@ function draw() {
   for (let i =0; i <squares.length; ++i){
     squares[i].show()
     squares[i].fall()
+    squares[i].checkBlock(i)
   }
   
 }
