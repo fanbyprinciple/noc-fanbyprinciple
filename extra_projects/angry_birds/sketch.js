@@ -1,27 +1,72 @@
+const {Engine, Mouse, World, Bodies, MouseConstraint, Constraint} = Matter
 let ground
-let box
+let boxes = []
 let bird
 let world, engine
+let mConstraint
+let slingshot
 
+let dotImg
+let boxImg
+let bkgImg
+
+
+function preload() {
+    console.log("Added preload")
+    dotImg = loadImage('./dot.png')
+    boxImg = loadImage('./equals.png')
+    bkgimg = loadImage('./skyBackground.png')
+}
 
 function setup(){
-    createCanvas(600,400)
+    createCanvas(711,400)
 
-    engine = Matter.Engine.create()
+    console.log("It works here")
+    engine = Engine.create()
     world = engine.world
 
-    ground = new Ground(width,height,width, 30, 51)
-    box = new Box(450, 300, 50, 75, 51)
-    bird = new Bird(100, 350, 50)
+    ground = new Ground(width/2,height-10,width, 20)
+    for(let i=0; i<3; i++){
+        boxes[i] = new Box(450, 300 -  i * 75, 84 , 100)
+    }
+    
+    bird = new Bird(100, 300, 25)
 
+    slingshot = new SlingShot(150,300,bird.body)
+    const mouse = Mouse.create(canvas.elt)
+    const options = {
+        mouse: mouse
+
+    }
+    mouse.pixelRatio = pixelDensity()
+    mConstraint = Matter.MouseConstraint.create(engine, options)
+    World.add(world, mConstraint)
+
+}
+
+function keyPressed() {
+    if (key == ' '){
+        World.remove(world, bird.body )
+        bird = new Bird(150,300,25)
+        slingshot.attach(bird.body)
+    }
+}
+
+function mouseReleased(){
+    setTimeout(()=>{
+        slingshot.fly()
+    }, 100)
 }
 
 function draw(){
 
-    background(0)
+    background(bkgImg)
     Matter.Engine.update(engine)
     ground.show()
-    box.show()
+    for (let box of boxes){
+        box.show()
+    }
+    slingshot.show()
     bird.show()
-
+    
 }
