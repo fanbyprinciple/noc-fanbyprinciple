@@ -12,5 +12,9 @@ But need to change approach now,
 1. consider square active to be a property of entire grid for better control.
 2. make clear line control
 
+
+SO I changed up the game and now new grid approach:
+![](gridshow.png)
+
 p5. editor at:
 https://editor.p5js.org/fanbyprinciple/sketches/7oUO3Yj_R

@@ -1,123 +1,115 @@
-class Square {
-  constructor(i) {
-    //console.log(i)
-    this.x = i[0]
-    this.y = i[1]
-    this.yspeed = 0.05
-  }
-  
-  show() {
-    fill(255,0,120)
-    rect(this.x, this.y, size,size)
-  }
-  
-  fall() {
-    this.y = this.y + this.yspeed  * size
-    if(this.y > height- size){
-      
-      this.y = indexes[indexes.length -1][1]
-      this.yspeed = 0
-    }
-  }
-  
-  checkBlock(this_index){
-    
-    if(this.x > width){
-      this.x = 0
-    } else if(this.x <0) {
-      this.x = width - size
-    }
-    
-    let new_squares = squares
-    //new_squares = new_squares.pop(this)
-    for(let i=0; i< new_squares.length; ++i){
-      if(i != this_index){
-        if (this.y == new_squares[i].y && this.x == new_squares[i].x){
-         console.log("here")
-         this.yspeed = 0
-         this.y = new_squares[i].y -size
 
-       }
+
+class Grid {
+  constructor(x,y) {
+    this.x = x
+    this.y = y
+    this.index = generate_index(x,y)
+    this.active = false
+    this.yspeed = 1
+    this.transition = false
+    this.passive = false
+
+  }
+  
+  show(){
+    if(this.passive || this.active){
+      fill(255,0, 120)
+    } else {
+      fill(255)
+    }
+    
+    rect(this.x, this.y, size, size)
+  }
+    
+  fall(){
+    if(this.active){
+      let current_square = generate_index(this.x, this.y)
+      let next_square = generate_index(this.x, this.y+size)
+      
+      if(this.y + size >= height || grid[next_square].active){
+        this.active = false
+        this.passive = true
+
+      }
+      else {
+        if(this.transition){
+          this.active = false
+          grid[next_square].active = true   
+          this.transition -= 1
+        } 
       }
     }
-  } // checkblock
+  } 
   
 }
-
-
-
-function clearLine() {
-  all_filled = False
-  for(let i=0; i<width; i+=size){
-    for(let j=0; j < squares.length; ++j){
-      // TODO
-    }
-  }
-} 
-
 
 function keyPressed() {
   //console.log("keyPressed")
   if(keyCode == LEFT_ARROW){
-    for(let i=0; i< squares.length; ++i){
-      squares[i].x -= size
-  
+    for (let i =0; i<grid.length; ++i){
+      if(grid[i].active){
+        grid[i].x -=size
+      }
     }
   } else if (keyCode== RIGHT_ARROW ){
-    for(let i=0; i< squares.length; ++i){
-      squares[i].x += size
-    
+    for (let i =0; i<grid.length; ++i){
+      if(grid[i].active){
+        grid[i].x +=size
+      }
     }
   }
 }
 
-
-let squares = []
-let indexes = []
 let size =25
+let grid = []
+
+function generate_index(x,y){
+  index = ((x/size) * 16) + (y/size )
+  //console.log(x/size, y/size)
+  return index
+}
+
+function generateBlock(){
+
+  for(j=6; j<10; ++j){
+    for(i=16*j; i<16*j+5;++i){
+      grid[i].active =true
+      grid[i].transition = 1
+    }
+  }
+  
+  
+  
+  
+}
 
 function setup() {
   createCanvas(400, 400);
   
+  
   for (let x =0; x<width; x += size){
     for (let y=0; y <height; y += size){
-      indexes.push([x,y])
-      stroke(0)
-      strokeWeight(1)
-      line(x,0,x,height)
-      
-      line(0,y,width, y)
+      //console.log(x,y)
+      grid.push(new Grid(x,y))
     }
   }
   
-  for(let i=0; i < 100; ++i){
-    squares.push(new Square(random(indexes)))
-  }
-  
-  //console.log(random(indexes))
+  generateBlock()
   
 }
 
 function draw() {
    background(255)
-  
-   for (let i =0; i<indexes.length; i += 1){
-      stroke(0)
-      strokeWeight(1)
-      let s = indexes[i][0] + " " + indexes[i][1]
-      // fill(50,100)
-      // textSize(8)
-      // text(s,indexes[i][0] ,indexes[i][1])
-      // // console.log(indexes[i])
-      line(indexes[i][0],0,indexes[i][0],height)
-      line(0,indexes[i][1],width, indexes[i][1])
-    
-  }
-  
-  for (let i =0; i <squares.length; ++i){
-    squares[i].show()
-    squares[i].fall()
-    squares[i].checkBlock(i)
-  }
+   frameRate(10)  
+   for (let i =0; i<grid.length; ++i){
+     grid[i].fall()
+     grid[i].show()
+     if(grid[i].active){
+       grid[i].transition = 1
+     }
+     
+     
+   }
   
 }
