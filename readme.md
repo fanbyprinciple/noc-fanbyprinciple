@@ -24,3 +24,7 @@ This repository also contains a host of extra projects in p5.js that I took up f
 Quirky and playful programming at its best.
 ![](ray_casting.gif)
 
+
+## More projects at @intandlearn
+
+https://github.com/fanbyprinciple/intandlearn
