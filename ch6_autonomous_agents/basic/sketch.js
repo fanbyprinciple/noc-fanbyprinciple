@@ -1,3 +1,13 @@
+function insideBody(subjectX, subjectY, water_body){
+    if( subjectX < water_body.x + water_body.size/2 && 
+        subjectX > water_body.x - water_body.size/2 &&
+        subjectY < water_body.y  +water_body.size/2 && 
+        subjectY> water_body.y- water_body.size/2){
+        return true
+    }
+    return false
+}
+
 class Ship{
     constructor(x,y){
         this.pos = createVector(x,y)
@@ -6,6 +16,7 @@ class Ship{
         this.r =6
         this.maxspeed = 4
         this.maxforce =0.1
+        this.color = 175
     }
 
     seek(target){
@@ -17,8 +28,8 @@ class Ship{
         let steer = p5.Vector.sub(desired,this.vel)
         steer.limit(this.maxforce)
 
-        this.applyForce(steer)
-
+        this.applyForce(steer) 
+        // determines the agility of the ship 
     }
 
     flee(target){
@@ -27,12 +38,32 @@ class Ship{
         desired.normalize()
         desired.mult(this.maxspeed)
 
-        let steer = p5.Vector.sub(desired, target)
+        let steer = p5.Vector.sub(desired, this.vel)
         steer.limit(this.maxforce)
         steer.mult(-1)
 
         this.applyForce(steer)
     
+    }
+
+    arrive(target){
+        let desired = p5.Vector.sub(target, this.pos)
+
+        let d = desired.mag()
+        desired.normalize()
+
+        if(d<100){
+            let m = map(d,0,100,0,this.maxspeed)
+            desired.mult(m)
+        } else {
+            desired.mult(this.maxspeed)
+        }
+
+
+
+        let steer = p5.Vector.sub(desired,this.vel)
+        steer.limit(this.maxforce)
+        this.applyForce(steer)
     }
 
     applyForce(force){
@@ -46,13 +77,31 @@ class Ship{
         this.acc.mult(0)
     }
 
+    
+
+    traverse(water_body){
+        //console.log(insideWater(this.pos.x, this.pos.y, water_body))
+        if( insideBody(this.pos.x, this.pos.y, water_body)) {
+                this.maxforce= 0.005
+                this.maxspeed = 0.5
+                this.color = 0
+                
+                return true
+
+            }
+        this.maxforce= 0.1
+        this.maxspeed = 4    
+        this.color = 175
+        return false
+    }
+
     display(){
         // My roomba
         // fill(51)
         // ellipse(this.pos.x, this.pos.y, this.r,this.r)
         
         let theta = this.vel.heading() + PI/2
-        fill(175)
+        fill(this.color)
         stroke(0)
         push()
         translate(this.pos.x, this.pos.y)
@@ -66,16 +115,39 @@ class Ship{
     }
 }
 
+class Water {
+    constructor(){
+        this.x = random(width)
+        this.y = random(height)
+        this.size = 300
+    }
 
+    display(){
+        fill('blue')
+        noStroke()
+        rectMode(CENTER)
+        rect(this.x, this.y, this.size,this.size)
+    }
+}
+var ships = []
+var fleet_size = 10
+let water_body
 
-var v
 function setup(){
     createCanvas(600,600)
-    v = new Ship(width/2, height/2)
+
+    for (let i=0 ; i < fleet_size; ++i ){
+        ships.push(new Ship(random(width), random(height)))
+    }
+    
+    water_body = new Water()
 }
+
 
 function draw(){
     background(255)
+
+    water_body.display()
 
     let mouse = createVector(mouseX, mouseY)
 
@@ -84,7 +156,11 @@ function draw(){
     strokeWeight(2)
     ellipse(mouse.x, mouse.y, 48, 48)
 
-    v.seek(mouse)
-    v.update()
-    v.display()
+    for(v of ships){
+        v.arrive(mouse)
+        v.update()
+        v.traverse(water_body)
+        v.display()
+    }
+
 }
