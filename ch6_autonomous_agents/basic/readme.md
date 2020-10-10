@@ -8,6 +8,14 @@ better.”
 
 ![rocket](rocket.gif)
 
+Till ex6.6 : Creating a central vector flowfield
+
+![centerVector](centerVector.png)
+
+following the flow path just before ex6.7
+
+![flow](flow.gif)
+
 ## further ideas
 
 1. create more means of locomotion: like shuffling feet etc.

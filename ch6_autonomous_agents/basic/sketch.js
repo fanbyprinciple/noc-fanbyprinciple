@@ -19,6 +19,42 @@ class Ship{
         this.color = 175
     }
 
+    checkEdges(){
+        if(this.pos.x <10 ){
+            let desired = createVector(this.maxspeed, this.vel.y)
+            let steer = p5.Vector.sub(desired, this.vel)
+            steer.limit(this.maxForce)
+            this.applyForce(steer)
+        }
+        
+        if(this.pos.x>width-10 ){
+            let desired = createVector(this.maxspeed, this.vel.y)
+            let steer = p5.Vector.sub(desired, this.vel)
+            steer.mult(-1)
+            steer.limit(this.maxForce)
+            this.applyForce(steer)
+        }
+
+
+        if(this.pos.y>height-10){
+            let desired = createVector(this.vel.x,this.maxspeed)
+            let steer = p5.Vector.sub(desired, this.vel)
+            steer.mult(-1)
+            steer.limit(this.maxForce)
+            this.applyForce(steer)
+        }
+
+        if(this.pos.y <10){
+            let desired = createVector( this.vel.x, this.maxspeed)
+            let steer = p5.Vector.sub(desired, this.vel)
+            
+            steer.limit(this.maxForce)
+            this.applyForce(steer)
+        }
+
+        
+    }
+
     seek(target){
         let desired = p5.Vector.sub(target,this.pos)
 
@@ -59,8 +95,6 @@ class Ship{
             desired.mult(this.maxspeed)
         }
 
-
-
         let steer = p5.Vector.sub(desired,this.vel)
         steer.limit(this.maxforce)
         this.applyForce(steer)
@@ -77,7 +111,13 @@ class Ship{
         this.acc.mult(0)
     }
 
-    
+    follow(flow){
+        let desired = flow.lookup(this.pos)
+        desired.mult(this.maxspeed)
+        let steer = p5.Vector.sub(desired, this.velocity)
+        steer.limit(this.maxforce)
+        this.applyForce(steer)
+    }
 
     traverse(water_body){
         //console.log(insideWater(this.pos.x, this.pos.y, water_body))
@@ -130,12 +170,13 @@ class Water {
     }
 }
 var ships = []
-var fleet_size = 10
+var fleet_size = 25
 let water_body
-
+let flowfield
+let debug = true
 function setup(){
-    createCanvas(600,600)
-
+    createCanvas(400,400)
+    flowfield = new FlowField(20)
     for (let i=0 ; i < fleet_size; ++i ){
         ships.push(new Ship(random(width), random(height)))
     }
@@ -143,11 +184,23 @@ function setup(){
     water_body = new Water()
 }
 
+function keyPressed() {
+    if (key == ' ') {
+      debug = !debug;
+    }
+  }
+
+  function mousePressed(){
+    flowfield.mouseinit()
+  }
 
 function draw(){
     background(255)
 
     water_body.display()
+    if(debug){ 
+        flowfield.display()
+    }
 
     let mouse = createVector(mouseX, mouseY)
 
@@ -159,6 +212,8 @@ function draw(){
     for(v of ships){
         v.arrive(mouse)
         v.update()
+        v.checkEdges()
+        v.follow(flowfield)
         v.traverse(water_body)
         v.display()
     }
