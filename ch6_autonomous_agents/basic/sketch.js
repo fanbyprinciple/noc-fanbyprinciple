@@ -198,6 +198,7 @@ function draw(){
     background(255)
 
     water_body.display()
+    
     if(debug){ 
         flowfield.display()
     }
