@@ -9,3 +9,12 @@ See `generating_datasets` for how to get the pictures for training set
 Then use `data/cruncher.py` for renaming
 
 Now we need to actually train and create a model
+
+Slow training:
+![breakdance](breakdance_training.gif)
+
+![trained](trained.png)
+
+But it is wrong it shows a circle a triangle
+![triangle](triangle.png)
+
