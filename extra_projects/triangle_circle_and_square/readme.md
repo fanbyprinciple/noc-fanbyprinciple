@@ -18,3 +18,10 @@ Slow training:
 But it is wrong it shows a circle a triangle
 ![triangle](triangle.png)
 
+https://editor.p5js.org/fanbyprinciple/sketches/6xtWBBjBt
+
+After modifying the model due to the location of square on test data we have a spatial dependence on shape size
+
+bigger is classified as square.
+
+![spatial_problem](spatial_problem.gif)
