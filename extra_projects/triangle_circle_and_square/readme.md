@@ -25,3 +25,7 @@ After modifying the model due to the location of square on test data we have a s
 bigger is classified as square.
 
 ![spatial_problem](spatial_problem.gif)
+
+
+But shiffman model seems to work just fine
+![shiffman](shiffman_ggod.gif)
