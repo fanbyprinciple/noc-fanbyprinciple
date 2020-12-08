@@ -29,3 +29,5 @@ bigger is classified as square.
 
 But shiffman model seems to work just fine
 ![shiffman](shiffman_ggod.gif)
+
+https://editor.p5js.org/fanbyprinciple/sketches/dpeLgD_Vh
