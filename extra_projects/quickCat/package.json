@@ -1,0 +1,15 @@
+{
+  "name": "quickcat",
+  "version": "1.0.0",
+  "description": "I am just using shiffmans created api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fanbyprinciple",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ndjson": "^2.0.0"
+  }
+}
