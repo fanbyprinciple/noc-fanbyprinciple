@@ -1,0 +1,27 @@
+#wrapper{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	padding: 10px;
+}
+#wrapper > *{
+	margin-top: 20px;
+}
+#list {
+	font-size: small;
+	text-align: left;
+}
+.info{
+	color: gray;
+	font-size: smaller;
+}
+select:disabled, button:disabled {
+	cursor:not-allowed;
+}
+canvas {
+	max-width: 100%;
+	height: auto !important;
+}
