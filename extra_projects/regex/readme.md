@@ -11,14 +11,16 @@
 \s - whitespace
 \S - !\s
 
-Quantifiers-
+![](slash_w.png)
+
+### Quantifiers-
 * - 0 or more
 + - 1 or more
 ? - 0 or 1
 {min, max}
 {n}
 
-Positions-
+### Positions-
 ^ - begining
 $ - end
 \b - word beginning
@@ -26,6 +28,34 @@ $ - end
 ^\w$ will match any line with one word
 \b\w{4,6}\b - will give me all words with 4,5 and 6 characters
 
+### Character classes -
+[a,b,c] - match any of these characters
 
+[a-z] a through z
 
+[-.{] - or . or{
 
+[s^bc] s or b and c
+
+[^sbc] not s b c
+
+pink
+pynk
+
+![](link_pink.png)
+
+(212)111-2222
+![](match_this.png)
+
+matching any four letter word with characteres in it
+![](match_four.png)
+
+Alternation
+
+(net | com) - matches net or com
+
+ashwin.jayaprakash@navy.gov.in
+
+![](email.png)
+
+Next : https://www.youtube.com/watch?v=c9HbsUSWilw
