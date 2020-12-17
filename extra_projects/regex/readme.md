@@ -1,5 +1,7 @@
 # Learning Regex
 
+Wonderful reference: https://shiffman.net/a2z/regex/
+
 1. They are used universally for search patterns
 2. They contain meta characters that denote more than one characters
 
@@ -62,3 +64,27 @@ ashwin jayaprakash
 ashish jyaparakash
 
 ![](replace_fnamme.gif)
+
+Back references:
+
+\b(\w+)\s\1\b
+
+1 refers tothe group
+
+test() and match()
+
+new RgExp(" ")
+new Strg(" ")
+
+var s = "hello"
+
+regularExp.test(string)
+string.test(regularExp)
+
+\b - word boundary
+
+/g is a flag to look at the expression multiple times
+/i for flagging case insensitive
+
+![](global_flag.png)
+next : https://www.youtube.com/watch?v=t029QcVHtas&list=PLRqwX-V7Uu6YEypLuls7iidwHMdCM6o2w&index=7
