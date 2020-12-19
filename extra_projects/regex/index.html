@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Enter your text here : <br />
+    <textarea id="area">111-222-333</textarea><br /><br />
+
+    <button id="sub" onclick="subber()">Submit</button>
+
+    <p id='result'></p>
+</body>
+
+<script>
+    function subber(){
+        //console.log(document.getElementById("area").value)
+        var ele = document.getElementById("area").value
+        
+        var r = /(\d{3})[-.]\d{3}[-.]\d{3}/g
+        //console.log(ele.match(r))
+
+        var result = r.exec(ele)
+        var resultString = ""
+
+        while(result != null){
+            resultString += result[1]
+            result =  r.exec(ele)
+        }
+
+        document.getElementById("result").innerHTML = ele.match(r)
+
+    }
+    
+</script>
+</html>

@@ -87,4 +87,7 @@ string.test(regularExp)
 /i for flagging case insensitive
 
 ![](global_flag.png)
-next : https://www.youtube.com/watch?v=t029QcVHtas&list=PLRqwX-V7Uu6YEypLuls7iidwHMdCM6o2w&index=7
+
+![](regex_in_action.png)
+
+next : https://www.youtube.com/watch?v=fdyqutmcI2Q&list=PLRqwX-V7Uu6YEypLuls7iidwHMdCM6o2w&index=8
