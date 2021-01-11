@@ -47,30 +47,81 @@ function reluf(n){
 
 function softmax(){}
 
+// get a value
+function predictLabel(result1, result2){
+  if (result1 == -1){
+    if(result2 == -1){
+      return 1
+    } else if (result2 == 1) {
+      return 2
+    }
+  } else if (result1 == 1){
+    if(result2 == -1){
+      return 3
+    } else if (result2 == 1) {
+      return 4
+    }
+  }
+}
+
 class Perceptron{
   
   constructor(){
-    this.weights = []
+    this.weights1 = []
+    this.weights2 = []
     this.weightlen = 2
+    
     for(let i = 0; i < this.weightlen; ++i){
-      let init = random(-1,1)
-      console.log('init', init)
-      this.weights[i] = init   
+      let init1 = random(-1,1)
+      console.log('init', init1)
+      this.weights1.push(init1)   
     }
-    console.log('weights initialised: ', this.weights[0], this.weights[1], this.weights) //wtf
+    
+    
+    for(let i = 0; i < this.weightlen; ++i){
+      let init2 = random(-1,1)
+      console.log('init', init2)
+      this.weights2.push(init2)   
+    }
+    
+    
+    print(this.weights2)
+    print(this.weights1)
+    
+    print('weights initialised: weight1 ', this.weights1, this.weights1[0], this.weights1[1], this.weights1.length) // why is this.weights different from this.weights1 and this.weights2
+    print('weights initialised: weight2 ', this.weights2, this.weights2[0], this.weights2[1], this.weights2.length ) //wtf
   }
   
   guess(inputs){
     console.log('guessing>')
-    let sum = 0
+    let sum1 = 0
+    let sum2 = 0
+    
+    let results1 = 0
+    let results2 = 0
+    
+    // for input[0] x
+    for(let i=0; i<this.weightlen; ++i){
+      print('weights1 ', i, " : ", this.weights1[i] * inputs[0])
+      sum1 += this.weights1[i] * inputs[0]
+       results1 = signf(sum1)
+    }
     
     for(let i=0; i<this.weightlen; ++i){
-      console.log('weight ', i, " : ", this.weights[i] * inputs[i])
-      sum += this.weights[i] * inputs[i]
+      print('weights2 ', i, " : ", this.weights2[i] * inputs[1])
+      sum2 += this.weights2[i] * inputs[1]
+      results2 = signf(sum2)
     }
-    //console.log('relu : ', reluf(sum))
-    console.log('signf : ', signf(sum))
-    return signf(sum)
+    
+    
+    print(results1, results2)
+    return predictLabel(results1, results2)
+    
+    
+    
+    // //console.log('relu : ', reluf(sum))
+    // console.log('signf : ', signf(sum))
+    // return signf(sum)
   }
   
   train(mouseClicksx, mouseClicksy, mouseClickst){
@@ -79,11 +130,16 @@ class Perceptron{
       let pred = this.guess(inputs)
       //console.log('Training pred: ', pred)
       let error = mouseClickst[i] - pred
+      print("calculating error: ", mouseClickst[i], " - ", pred)
       
       let lr = 0.01
       for (let i=0; i<this.weightlen; ++i){
-        this.weights[i] += error * inputs[i] * lr
-      }
+        this.weights1[i] += error * inputs[0] * lr
+        this.weights2[i] += error * inputs[1] * lr
+      } 
+      print("error: ",error)
+      print('weights updated: weight1 ', this.weights1[0], this.weights1[1], this.weights1)
+      print('weights updated: weight2 ', this.weights2[0], this.weights2[1], this.weights2)
     }
     
   }
@@ -95,7 +151,7 @@ function setup() {
   createCanvas(400, 400);
   background(0)
   brain = new Perceptron()
-  createDummyPoints(30)
+  createDummyPoints(30) // training
 
 }
 
