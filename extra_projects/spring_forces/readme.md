@@ -6,4 +6,10 @@ taken from : https://www.youtube.com/watch?v=Rr-5HiXquhw
 
 ![](minimal.gif)
 
+intermediate result:
+
 ![](twins.gif)
+
+final result :
+
+![](final.js)
