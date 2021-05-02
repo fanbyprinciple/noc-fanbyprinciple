@@ -20,3 +20,11 @@ https://editor.p5js.org/Ajmcking/sketches/hf8KqB_0Q
 finding error:
 
 ![](mouse_general.png)
+
+Getting it right:
+
+![](mouse_general.gif)
+
+live at : https://editor.p5js.org/Ajmcking/present/hf8KqB_0Q
+
+![](territory_marker.gif)

@@ -9,7 +9,9 @@ let mouseLabels =[]
 
 function setup() {
   
-  createCanvas(400, 400);
+  let canvas = createCanvas(400, 400);
+  canvas.mousePressed(trainingData)
+  
   background(220);
   
   sel = createSelect();
@@ -42,23 +44,25 @@ function finishedTraining(){
   isTrained = true
 }
 
-function mousePressed(){
+function trainingData(){
   
   let mx = mouseX
   let my = mouseY
-  
-  mouseInputX.push(mx)
-  mouseInputY.push(my)
+
+  mouseInputX.push(mouseX)
+  mouseInputY.push(mouseY)
   let inputs = {
-    mx, my
+    mouseX, mouseY
   }
+  
+   // console.log(mouseX, mx, mouseInputX[0], inputs)
   
   mouseLabels.push(currentLabel)
   
   let label = currentLabel
   
   brain.addData(inputs, {label})
-  console.log(`input: ${mx}, ${my},  output: ${label}`)
+  console.log(`input: ${mx,my, mouseX, mouseY} ,  output: ${label}`)
 }
 
 
