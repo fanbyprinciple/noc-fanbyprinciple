@@ -1,5 +1,7 @@
 ### Nature of Code 
 
+![](./my_work/mysterySliders/mysterSlider.gif)
+
 Nature of Code (noc) is a book by Daniel shiffman, where he investigates natural phenomena using code, written entirely in processing. I wanted to try my hand at translating the code in processing to p5.js, even though an official trancompilation exists. 
 
 This will include my attempts at additional modifications in the code also. So don't expect a code to code reference. Cheers!
@@ -15,6 +17,7 @@ This repository also contains a host of extra projects in p5.js that I took up f
 Quirky and playful programming at its best.
 
 I would like to complete the book though.
+
 
 ![](ray_casting.gif)
 
