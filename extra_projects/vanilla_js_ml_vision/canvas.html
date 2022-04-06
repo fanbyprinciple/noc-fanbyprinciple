@@ -11,7 +11,7 @@
         </style>
         <script>
             var SIZE = 300
-            var CANVAS = null()
+            var CANVAS = null
             var INTERVAL = 42
             var THRESHOLD = 155
 
@@ -21,7 +21,7 @@
                 CANVAS.height = SIZE
 
                 var constraints = { video : true};
-                var permission = navigator.mediaDevices.getUserMedia(contraints)
+                var permission = navigator.mediaDevices.getUserMedia(constraints)
                 permission.then(
                     function(stream){
                         var video = document.createElement('video')
@@ -29,6 +29,7 @@
                         video.play()
                         setInterval(updateImage, INTERVAL, video)
                     }
+                    
                 ).catch(
                     function(err){
                         alert("camera error")
@@ -38,11 +39,12 @@
 
             function updateImage(video){
                 var context = CANVAS.getContext('2d')
-                var minSize = Math.min(video.videoWidth, video.videoLength )
+                var minSize = Math.min(video.videoWidth, video.videoHeight )
                 var startX = (video.videoWidth - minSize) / 2
-                var startY = (video.videoLength - minSize) / 2
+                var startY = (video.videoHeight - minSize) / 2
+                
                 context.drawImage(video, startX, startY, minSize, minSize, 0, 0, SIZE, SIZE)
-
+            
                 var image = context.getImageData(0,0,SIZE,SIZE)
                 var matrix = getPixelMatrix(image.data)
                 processMatrix(matrix)
@@ -54,8 +56,8 @@
             }
 
             function isolateMatrix(matrix){
-                for (var i=0; i <= SIZE; i++){
-                    for (var j=0; j<=SIZE; j++){
+                for (var i=1; i <= SIZE; i++){
+                    for (var j=1; j<=SIZE; j++){
                         if (matrix[i][j] < THRESHOLD){
                             matrix[i][j] = 0
                         } else {
@@ -86,6 +88,7 @@
         <div>
         <center>
             <canvas id="camera"></canvas>
+
             <div id="output">?</div>
             <br>
             <input id="objectName" type="text" placeholder="what is this?" />
