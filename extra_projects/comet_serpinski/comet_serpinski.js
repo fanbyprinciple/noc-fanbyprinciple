@@ -3,7 +3,7 @@ let mY = 50
 let counter = 0
 let cometSize = 20
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(400, 400);
   
   
 }
@@ -20,15 +20,16 @@ function draw(){
     mY = mY + 10
   }
   
+  noStroke()
   fill(255,120,0)
   ellipse(mouseX, mouseY, cometSize)
   drawCircle(width/2,height/2,mX+ mY)
   
   
   
-  if(mouseX> width/2){
+  if(mouseX> width/2 && mouseY > width/2){
     counter = 1
-    cometSize  = (mouseY - height)/ 5
+    cometSize  = (mouseY - height)/3
   }
   
 }
