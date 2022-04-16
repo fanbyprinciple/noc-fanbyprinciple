@@ -52,8 +52,22 @@
 
             function processMatrix(matrix){
                 isolateMatrix(matrix)
-                //updateCanvas(matrix)
+                var box = getBoundingBox()
+                updateCanvas(matrix)
+                drawBox()
             }
+
+            function updateCanvas(matrix){
+                return null
+            }
+
+            function getBoundingBox(matrix){
+                var bbox = {
+                    
+                }
+            }
+
+            function drawBox(){}
 
             function isolateMatrix(matrix){
                 for (var i=1; i <= SIZE; i++){
